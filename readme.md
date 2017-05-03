@@ -1,13 +1,13 @@
-# UCF A-Z Index #
+# UCF Resource Search #
 
-Provides a shortcode, functions, and default styles for displaying an A-Z Index.
+Provides a shortcode, functions, and default styles for displaying an a resource search input and list of resources.
 
 
 ## Description ##
 
-The A-Z Index is added to pages using a ucf-index shortcode. A-Z Index will display content from within the Wordpress editor.
+The resource search and links are added to pages using a ucf-resource-search shortcode.
 
-The ucf-index shortcode has several options:
+The ucf-resource-search shortcode has several options:
 * title - the title of the section to be displayed
 
 
@@ -18,7 +18,7 @@ The ucf-index shortcode has several options:
 2. Activate the plugin through the "Plugins" screen in WordPress
 
 ### WP CLI Installation ###
-1. `$ wp plugin install --activate https://github.com/UCF/UCF-A-Z-Index-Plugin/archive/master.zip`.  See [WP-CLI Docs](http://wp-cli.org/commands/plugin/install/) for more command options.
+1. `$ wp plugin install --activate https://github.com/UCF/UCF-Resource-Search-Plugin/archive/master.zip`.  See [WP-CLI Docs](http://wp-cli.org/commands/plugin/install/) for more command options.
 
 
 

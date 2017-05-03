@@ -1,0 +1,193 @@
+<?php
+/**
+ * Handles the registration of the Resource Link custom post type.
+ * @author RJ Bruneel
+ * @since 1.0.0
+ **/
+if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
+	class UCF_Resource_Link_PostType {
+		/**
+		 * Registers the custom post type.
+		 * @author RJ Bruneel
+		 * @since 1.0.0
+		 **/
+		public static function register() {
+			$labels = self::get_labels();
+			register_post_type( 'ucf_resource_link', self::args( $labels ) );
+			add_action( 'add_meta_boxes', array( 'UCF_Resource_Link_PostType', 'register_metabox' ) );
+			add_action( 'save_post', array( 'UCF_Resource_Link_PostType', 'save_metabox' ) );
+		}
+
+		public function get_labels() {
+			return apply_filters(
+				'ucf_resource_link_labels',
+				array(
+					'singular'  => 'Resource Link',
+					'plural'    => 'Resource Links',
+					'post_type' => 'ucf_resource_link'
+				)
+			);
+		}
+
+		/**
+		* Outputs this item in HTML.
+		 * @author RJ Bruneel
+		 * @since 1.0.0
+		**/
+		public function toHTML($object){
+			$html = '<a href="'.get_post_meta($object->ID, 'ucf_resource_link_url', TRUE).'">'.$object->post_title.'</a>';
+			return $html;
+		}
+
+		/**
+		 * Adds a metabox to the Resource link custom post type.
+		 * @author RJ Bruneel
+		 * @since 1.0.0
+		 **/
+		public static function register_metabox() {
+			add_meta_box(
+				'ucf_resource_link_metabox',
+				'Resource Link Details',
+				array( 'UCF_Resource_Link_PostType', 'register_metafields' ),
+				'ucf_resource_link',
+				'normal',
+				'high'
+			);
+		}
+		/**
+		 * Adds metafields to the metabox
+		 * @author RJ Bruneel
+		 * @since 1.0.0
+		 * @param $post WP_POST object
+		 **/
+		public static function register_metafields( $post ) {
+			wp_nonce_field( 'ucf_resource_link_nonce_save', 'ucf_resource_link_nonce' );
+			$url = get_post_meta( $post->ID, 'ucf_resource_link_url', TRUE );
+			$admins = get_post_meta( $post->ID, 'ucf_resource_link_admins', TRUE );
+?>
+			<table class="form-table">
+				<tbody>
+					<tr>
+						<th>
+							<label class="block" for="ucf_resource_link_url"><strong>URL</strong></label>
+						</th>
+						<td>
+							<input type="text" id="ucf_resource_link_url" name="ucf_resource_link_url" class="regular-text" <?php echo ( ! empty( $url ) ) ? 'value="' . $url . '"' : ''; ?>>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label class="block" for="ucf_resource_link_admins"><strong>Web Administrators</strong></label>
+						</th>
+						<td>
+							<p class="description">Add web administrator information here. Accepts HTML content.</p>
+							<textarea id="ucf_resource_link_admins" name="ucf_resource_link_admins" class="regular-text"><?php echo ( ! empty( $admins ) ) ? $admins : ''; ?></textarea>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+<?php
+		}
+		/**
+		 * Handles saving the data in the metabox
+		 * @author RJ Bruneel
+		 * @since 1.0.0
+		 * @param $post_id WP_POST post id
+		 **/
+		public static function save_metabox( $post_id ) {
+			$post_type = get_post_type( $post_id );
+			// If this isn't a resource link, return.
+			if ( 'ucf_resource_link' !== $post_type ) return;
+			if ( isset( $_POST['ucf_resource_link_url'] ) ) {
+				// Ensure field is valid.
+				$url = sanitize_text_field( $_POST['ucf_resource_link_url'] );
+				if ( $url ) {
+					update_post_meta( $post_id, 'ucf_resource_link_url', $url );
+				}
+			}
+			if ( isset( $_POST['ucf_resource_link_admins'] ) ) {
+				// Ensure field is valid.
+				$admins = $_POST['ucf_resource_link_admins'];
+				if ( $admins ) {
+					update_post_meta( $post_id, 'ucf_resource_link_admins', $admins );
+				}
+			}
+		}
+		/**
+		 * Returns an array of labels for the custom post type.
+		 * @author RJ Bruneel
+		 * @since 1.0.0
+		 * @param $singular string | The singular form for the CPT labels.
+		 * @param $plural string | The plural form for the CPT labels.
+		 * @param $post_type string | The post type name.
+		 * @return Array
+		 **/
+		public static function labels( $singular, $plural, $post_type ) {
+			return array(
+				'name'                  => _x( $plural, 'Post Type General Name', $post_type ),
+				'singular_name'         => _x( $singular, 'Post Type Singular Name', $post_type ),
+				'menu_name'             => __( $plural, $post_type ),
+				'name_admin_bar'        => __( $singular, $post_type ),
+				'archives'              => __( $plural . ' Archives', $post_type ),
+				'parent_item_colon'     => __( 'Parent ' . $singular . ':', $post_type ),
+				'all_items'             => __( 'All ' . $plural, $post_type ),
+				'add_new_item'          => __( 'Add New ' . $singular, $post_type ),
+				'add_new'               => __( 'Add New', $post_type ),
+				'new_item'              => __( 'New ' . $singular, $post_type ),
+				'edit_item'             => __( 'Edit ' . $singular, $post_type ),
+				'update_item'           => __( 'Update ' . $singular, $post_type ),
+				'view_item'             => __( 'View ' . $singular, $post_type ),
+				'search_items'          => __( 'Search ' . $plural, $post_type ),
+				'not_found'             => __( 'Not found', $post_type ),
+				'not_found_in_trash'    => __( 'Not found in Trash', $post_type ),
+				'featured_image'        => __( 'Featured Image', $post_type ),
+				'set_featured_image'    => __( 'Set featured image', $post_type ),
+				'remove_featured_image' => __( 'Remove featured image', $post_type ),
+				'use_featured_image'    => __( 'Use as featured image', $post_type ),
+				'insert_into_item'      => __( 'Insert into ' . $singular, $post_type ),
+				'uploaded_to_this_item' => __( 'Uploaded to this ' . $singular, $post_type ),
+				'items_list'            => __( $plural . ' list', $post_type ),
+				'items_list_navigation' => __( $plural . ' list navigation', $post_type ),
+				'filter_items_list'     => __( 'Filter ' . $plural . ' list', $post_type ),
+			);
+		}
+		public static function args( $labels ) {
+			$args = array(
+				'label'                 => __( $labels['singular'], 'ucf_resource_link' ),
+				'description'           => __( $labels['plural'], 'ucf_resource_link' ),
+				'labels'                => self::labels( $labels['singular'], $labels['plural'], $labels['post_type'] ),
+				'supports'              => array( 'title', 'revisions', ),
+				'taxonomies'            => self::taxonomies(),
+				'hierarchical'          => false,
+				'public'                => true,
+				'show_ui'               => true,
+				'show_in_menu'          => true,
+				'menu_position'         => 5,
+				'menu_icon'             => 'dashicons-welcome-widgets-menus',
+				'show_in_admin_bar'     => true,
+				'show_in_nav_menus'     => true,
+				'can_export'            => true,
+				'has_archive'           => true,
+				'exclude_from_search'   => false,
+				'publicly_queryable'    => true,
+				'capability_type'       => 'post',
+			);
+			$args = apply_filters( 'ucf_resource_link_post_type_args', $args );
+			return $args;
+		}
+		public static function taxonomies() {
+			$retval = array(
+				'resource_link_types'
+			);
+			$retval = apply_filters( 'resource_link_taxonomies', $retval );
+			foreach( $retval as $taxonomy ) {
+				if ( ! taxonomy_exists( $taxonomy ) ) {
+					unset( $retval[$taxonomy] );
+				}
+			}
+			return $retval;
+		}
+	}
+	add_action( 'init', array( 'UCF_Resource_Link_PostType', 'register' ), 10, 0 );
+}
+?>
