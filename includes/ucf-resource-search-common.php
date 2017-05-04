@@ -6,6 +6,12 @@
 if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 	class UCF_Resource_Search_Common {
 
+		public function enqueue_styles() {
+			if ( get_option( 'ucf_resource_search_include_css' ) ) {
+				wp_enqueue_style( 'ucf_resource_search_css', plugins_url( 'static/css/ucf-resource-search.min.css', UCF_Resource_Search__PLUGIN_FILE ), false, false, 'all' );
+			}
+		}
+
 		/**
 		 * Displays the output of the resource search content.
 		 *
@@ -182,20 +188,20 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 			);
 			ob_start();
 		?>
-			<div class="post-type-search">
-				<div class="post-type-search-header">
-					<form class="post-type-search-form form-inline" action="." method="get">
-						<label class="post-type-search-label">
-							<span class="post-type-search-labeltext">
+			<div class="resource-search">
+				<div class="resource-search-header">
+					<form class="resource-search-form form-inline" action="." method="get">
+						<label class="resource-search-label">
+							<span class="resource-search-labeltext">
 								<?php echo $params['default_search_label']; ?>
 							</span>
-							<input type="text" class="form-control post-type-search-input" placeholder="<?php echo $params['default_search_text']; ?>">
+							<input type="text" class="form-control resource-search-input" placeholder="<?php echo $params['default_search_text']; ?>">
 						</label>
 					</form>
 				</div>
-				<div class="post-type-search-results"></div>
+				<div class="resource-search-results"></div>
 				<?php if ( $params['show_sorting'] ) { ?>
-				<div class="btn-group post-type-search-sorting">
+				<div class="btn-group resource-search-sorting">
 					<button class="btn btn-default<?php if ( $params['default_sorting'] == 'term' ) echo ' active'; ?>">
 						<span class="glyphicon glyphicon-list-alt"></span>
 					</button>
@@ -265,8 +271,8 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 							</div>
 								<div class="row">
 									<div class="<?php echo $params['column_width']; ?>">
-										<div class="post-search-heading-wrap">
-											<h3 class="post-search-heading"><?php echo esc_html( $section_title ); ?></h3>
+										<div class="resource-search-heading-wrap">
+											<h3 class="resource-search-heading"><?php echo esc_html( $section_title ); ?></h3>
 										</div>
 									</div>
 								</div>
@@ -279,10 +285,10 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 								foreach ( $split_posts as $resource => $column_posts ):
 								?>
 									<div class="<?php echo $params['column_width']; ?>">
-										<ul class="post-search-list">
+										<ul class="resource-search-list">
 										<?php foreach( $column_posts as $key => $post ): ?>
 											<li data-post-id="<?php echo $post->ID; ?>">
-												<?php echo UCF_Resource_Link_PostType::toHTML( $post ); ?><span class="search-post-pgsection"><?php echo $section_title; ?></span>
+												<?php echo UCF_Resource_Link_PostType::toHTML( $post ); ?><span class="resource-search-post-pgsection"><?php echo $section_title; ?></span>
 											</li>
 										<?php endforeach; ?>
 										</ul>
@@ -296,13 +302,13 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 							<?php endif; ?>
 
 							<div class="<?php echo $params['column_width']; ?>">
-								<div class="post-search-heading-wrap">
-									<h3 class="post-search-heading"><?php echo esc_html( $section_title ); ?></h3>
+								<div class="resource-search-heading-wrap">
+									<h3 class="resource-search-heading"><?php echo esc_html( $section_title ); ?></h3>
 								</div>
-								<ul class="post-search-list">
+								<ul class="resource-search-list">
 								<?php foreach( $section_posts as $post ): ?>
 									<li data-post-id="<?php echo $post->ID; ?>">
-										<?php echo UCF_Resource_Link_PostType::toHTML( $post ); ?><span class="search-post-pgsection"><?php echo $section_title; ?></span>
+										<?php echo UCF_Resource_Link_PostType::toHTML( $post ); ?><span class="resource-search-post-pgsection"><?php echo $section_title; ?></span>
 									</li>
 								<?php endforeach; ?>
 								</ul>
@@ -344,6 +350,8 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 			return ob_get_clean();
 		}
 	}
+
+	add_action( 'wp_enqueue_scripts', array( 'UCF_Resource_Search_Common', 'enqueue_styles' ) );
 }
 
 ?>

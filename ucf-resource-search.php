@@ -16,10 +16,13 @@ add_action( 'plugins_loaded', function() {
 
 	define( 'UCF_Resource_Search__PLUGIN_FILE', __FILE__ );
 
-	include_once 'includes/ucf-resource-link-tax.php';
+	require_once 'includes/ucf-resource-search-config.php';
+	require_once 'includes/ucf-resource-link-tax.php';
 	require_once 'includes/ucf-resource-search-common.php';
 	require_once 'includes/ucf-resource-link-posttype.php';
 	require_once 'shortcodes/ucf-resource-search-shortcode.php';
+
+	add_action( 'admin_menu', array( 'UCF_Resource_Search_Config', 'add_options_page' ) );
 
 } );
 

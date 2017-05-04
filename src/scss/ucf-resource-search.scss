@@ -1,0 +1,10 @@
+.resource-link {
+  color: #0275d8;
+  text-decoration: none;
+
+  &:focus,
+  &:hover {
+    color: #014c8c;
+    text-decoration: underline;
+  }
+}

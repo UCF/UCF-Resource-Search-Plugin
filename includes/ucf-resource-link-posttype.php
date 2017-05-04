@@ -35,7 +35,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 		 * @since 1.0.0
 		**/
 		public function toHTML($object){
-			$html = '<a href="'.get_post_meta($object->ID, 'ucf_resource_link_url', TRUE).'">'.$object->post_title.'</a>';
+			$html = '<a class="resource-link" href="'.get_post_meta($object->ID, 'ucf_resource_link_url', TRUE).'">'.$object->post_title.'</a>';
 			return $html;
 		}
 

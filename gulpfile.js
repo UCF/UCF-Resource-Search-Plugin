@@ -24,14 +24,14 @@ gulp.task('scss-lint', function() {
 
 // Compile + bless primary scss files
 gulp.task('css-main', function() {
-  gulp.src(config.scssPath + '/ucf-spotlight.scss')
+  gulp.src(config.scssPath + '/ucf-resource-search.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
       browsers: ['last 2 versions', 'ie >= 9'],
       cascade: false
     }))
     .pipe(cleanCSS({compatibility: 'ie9'}))
-    .pipe(rename('ucf-spotlight.min.css'))
+    .pipe(rename('ucf-resource-search.min.css'))
     .pipe(bless())
     .pipe(gulp.dest(config.cssPath))
     .pipe(browserSync.reload({stream: true}));
