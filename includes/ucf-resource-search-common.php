@@ -192,9 +192,9 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 				<div class="resource-search-header">
 					<form class="resource-search-form form-inline" action="." method="get">
 						<label class="resource-search-label">
-							<span class="resource-search-labeltext">
+							<h2 class="h4 font-sans-serif text-uppercase">
 								<?php echo $params['default_search_label']; ?>
-							</span>
+							</h2>
 							<input type="text" class="form-control resource-search-input" placeholder="<?php echo $params['default_search_text']; ?>">
 						</label>
 					</form>
@@ -272,7 +272,8 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 								<div class="row">
 									<div class="<?php echo $params['column_width']; ?>">
 										<div class="resource-search-heading-wrap">
-											<h3 class="resource-search-heading"><?php echo esc_html( $section_title ); ?></h3>
+											<h3 class="resource-search-heading font-slab-serif"><?php echo esc_html( $section_title ); ?></h3>
+											<hr class="hr-3 hr-primary">
 										</div>
 									</div>
 								</div>
@@ -288,7 +289,7 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 										<ul class="resource-search-list">
 										<?php foreach( $column_posts as $key => $post ): ?>
 											<li data-post-id="<?php echo $post->ID; ?>">
-												<?php echo UCF_Resource_Link_PostType::toHTML( $post ); ?><span class="resource-search-post-pgsection"><?php echo $section_title; ?></span>
+												<?php echo UCF_Resource_Link_PostType::toHTML( $post ); ?><span class="hidden-xs-up"><?php echo $section_title; ?></span>
 											</li>
 										<?php endforeach; ?>
 										</ul>
@@ -303,12 +304,14 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 
 							<div class="<?php echo $params['column_width']; ?>">
 								<div class="resource-search-heading-wrap">
-									<h3 class="resource-search-heading"><?php echo esc_html( $section_title ); ?></h3>
+									<h3 class="resource-search-heading font-slab-serif"><?php echo esc_html( $section_title ); ?></h3>
+									<span class="to-top-text text-uppercase"><span class="fa fa-long-arrow-up"></span> <a href="#">Back to Top</a></span>
+									<hr class="hr-3 hr-primary">
 								</div>
 								<ul class="resource-search-list">
 								<?php foreach( $section_posts as $post ): ?>
 									<li data-post-id="<?php echo $post->ID; ?>">
-										<?php echo UCF_Resource_Link_PostType::toHTML( $post ); ?><span class="resource-search-post-pgsection"><?php echo $section_title; ?></span>
+										<?php echo UCF_Resource_Link_PostType::toHTML( $post ); ?><span class="hidden-xs-up"><?php echo $section_title; ?></span>
 									</li>
 								<?php endforeach; ?>
 								</ul>

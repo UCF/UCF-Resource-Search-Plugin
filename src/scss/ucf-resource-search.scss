@@ -1,10 +1,84 @@
-.resource-link {
-  color: #0275d8;
-  text-decoration: none;
+// Copied from Athena
+$ucf-gold: #ffc904;
+$ucf-gold-darker: #b18e00;
+$font-family-sans-serif: 'Helvetica Neue', Arial,sans-serif !default;
+$font-family-slab-serif: serif;
 
-  &:focus,
-  &:hover {
-    color: #014c8c;
-    text-decoration: underline;
+.resource-search {
+
+  .jump-to-list {
+    margin: 50px 0;
+  }
+
+  .resource-search-heading {
+    display: inline-block;
+    font-size: 65px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: .8;
+    margin-bottom: 8px;
+    margin-top: 0;
+  }
+
+  .resource-search-list {
+    padding-left: 25px;
+    padding-top: 10px;
+
+    li {
+      font-size: 16px;
+      line-height: 1.3;
+      margin-bottom: .8em;
+    }
+  }
+
+  .resource-link {
+    color: #0275d8;
+    text-decoration: none;
+
+    &:focus,
+    &:hover {
+      color: #014c8c;
+      text-decoration: underline;
+    }
+  }
+
+  .resource-search-heading-wrap {
+    position: relative;
+  }
+
+  .to-top-text {
+    bottom: 15px;
+    color: #555;
+    font-size: 14px;
+    position: absolute;
+    right: 0;
+  }
+
+  // Utilities
+  .font-sans-serif {
+    font-family: $font-family-sans-serif;
+  }
+
+  .font-slab-serif {
+    font-family: $font-family-slab-serif;
+  }
+
+  .hidden-xs-up {
+    display: none;
+  }
+
+  .hr-primary {
+    border-top: 1px solid $ucf-gold;
+    box-sizing: content-box;
+    height: 0;
+    margin-top: 0;
+  }
+
+  .hr-3 {
+    border-width: 5px;
+  }
+
+  .text-uppercase {
+    text-transform: uppercase;
   }
 }
