@@ -12,6 +12,10 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 			}
 		}
 
+		public function enqueue_scripts() {
+			wp_enqueue_script( 'ucf-resource_search_js', plugins_url( 'static/js/ucf-resource-search.min.js', UCF_Resource_Search__PLUGIN_FILE ), null, null, true );
+		}
+
 		/**
 		 * Displays the output of the resource search content.
 		 *
@@ -60,7 +64,7 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 				$before = apply_filters( 'ucf_resource_search_display_before', $output, $resource );
 			}
 
-			$content = self::ucf_resource_search_display( $params );
+			$content = self::ucf_resource_search_display( $params, $search_data );
 			if ( has_filter( 'ucf_resource_search_display' ) ) {
 				$content = apply_filters( 'ucf_resource_search_display', $output, $params );
 			}
@@ -107,19 +111,26 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 		 *
 		 * @return string | The html to be appended to output.
 		 **/
-		public static function ucf_resource_search_display( $params ) {
+		public static function ucf_resource_search_display( $params, $search_data ) {
 			ob_start();
-		?>
+			?>
+
 			<script type="text/javascript">
-				if(typeof PostTypeSearchDataManager != 'undefined') {
-					PostTypeSearchDataManager.register(new PostTypeSearchData(
-						<?php echo json_encode( $params['column_count'] ); ?>,
-						<?php echo json_encode( $params['column_width'] ); ?>,
-						<?php echo json_encode( $search_data ); ?>
-					));
+				if (typeof jQuery !== 'undefined') {
+					jQuery(document).ready(function ($) {
+						PostTypeSearchDataManager.register(new PostTypeSearchData(
+							<?php echo json_encode( $params['column_count'] ); ?>,
+							<?php echo json_encode( $params['column_width'] ); ?>,
+							<?php echo json_encode( $search_data ); ?>
+						));
+					});
+				} else {
+					console.log('jQuery dependency failed to load');
 				}
 			</script>
+
 			<?php
+
 			// Set up a post query
 			$args = array(
 				'numberposts' => -1,
@@ -183,8 +194,8 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 			}
 			ksort( $by_alpha );
 			$sections = array(
-				'post-type-search-term'  => $by_term,
-				'post-type-search-alpha' => $by_alpha,
+				'resource-search-term'  => $by_term,
+				'resource-search-alpha' => $by_alpha,
 			);
 			ob_start();
 		?>
@@ -247,12 +258,12 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 			foreach ( $sections as $id => $section ):
 				$hide = false;
 				switch ( $id ) {
-					case 'post-type-search-alpha':
+					case 'resource-search-alpha':
 						if ( $params['default_sorting'] == 'term' ) {
 							$hide = True;
 						}
 						break;
-					case 'post-type-search-term':
+					case 'resource-search-term':
 						if ( $params['default_sorting'] == 'alpha' ) {
 							$hide = True;
 						}
@@ -305,7 +316,6 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 							<div class="<?php echo $params['column_width']; ?>">
 								<div class="resource-search-heading-wrap">
 									<h3 class="resource-search-heading font-slab-serif"><?php echo esc_html( $section_title ); ?></h3>
-									<span class="to-top-text text-uppercase"><span class="fa fa-long-arrow-up"></span> <a href="#">Back to Top</a></span>
 									<hr class="hr-3 hr-primary">
 								</div>
 								<ul class="resource-search-list">
@@ -328,7 +338,7 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 
 			<?php endforeach; ?>
 
-			</div><!-- .post-type-search -->
+			</div><!-- .resource-search -->
 		<?php
 			return ob_get_clean();
 		}
@@ -355,6 +365,7 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 	}
 
 	add_action( 'wp_enqueue_scripts', array( 'UCF_Resource_Search_Common', 'enqueue_styles' ) );
+	add_action( 'wp_enqueue_scripts', array( 'UCF_Resource_Search_Common', 'enqueue_scripts' ) );
 }
 
 ?>
