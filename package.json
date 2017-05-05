@@ -9,6 +9,10 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "~2.3.2",
     "gulp-scss-lint": "^0.4.0",
-    "merge": "^1.2.0"
+    "merge": "^1.2.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-uglify": "^2.1.2",
+    "jshint-stylish": "^2.2.1"
   }
 }
