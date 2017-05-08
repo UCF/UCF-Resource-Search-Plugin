@@ -63,27 +63,32 @@ if ( ! class_exists( 'UCF_Resource_Link_Type' ) ) {
 			}
 		}
 		public static function labels() {
+			$labels = array(
+				'singular'  => 'Resource Link Type',
+				'plural'    => 'Resource Link Types',
+				'post_type' => 'ucf_resource_link'
+			);
 			return array(
-				'name'                       => _x( 'Resource Link Types', 'Taxonomy General Name', 'ucf_resource_link' ),
-				'singular_name'              => _x( 'Resource Link Type', 'Taxonomy Singular Name', 'ucf_resource_link' ),
-				'menu_name'                  => __( 'Resource Link Types', 'ucf_resource_link' ),
-				'all_items'                  => __( 'All Resource Link Types', 'ucf_resource_link' ),
-				'parent_item'                => __( 'Parent Resource Link Type', 'ucf_resource_link' ),
-				'parent_item_colon'          => __( 'Parent Resource Link Type:', 'ucf_resource_link' ),
-				'new_item_name'              => __( 'New Resource Link Type Name', 'ucf_resource_link' ),
-				'add_new_item'               => __( 'Add New Resource Link Type', 'ucf_resource_link' ),
-				'edit_item'                  => __( 'Edit Resource Link Type', 'ucf_resource_link' ),
-				'update_item'                => __( 'Update Resource Link Type', 'ucf_resource_link' ),
-				'view_item'                  => __( 'View Resource Link Type', 'ucf_resource_link' ),
-				'separate_items_with_commas' => __( 'Separate Resource Link types with commas', 'ucf_resource_link' ),
-				'add_or_remove_items'        => __( 'Add or remove Resource Link types', 'ucf_resource_link' ),
-				'choose_from_most_used'      => __( 'Choose from the most used', 'ucf_resource_link' ),
-				'popular_items'              => __( 'Popular Resource Link Types', 'ucf_resource_link' ),
-				'search_items'               => __( 'Search Resource Link Types', 'ucf_resource_link' ),
-				'not_found'                  => __( 'Not Found', 'ucf_resource_link' ),
-				'no_terms'                   => __( 'No Resource Link types', 'ucf_resource_link' ),
-				'items_list'                 => __( 'Resource Link Types list', 'ucf_resource_link' ),
-				'items_list_navigation'      => __( 'Resource Link types list navigation', 'ucf_resource_link' ),
+				'name'                       => _x( $labels['plural'], 'Taxonomy General Name', $labels['post_type'] ),
+				'singular_name'              => _x( $labels['singular'], 'Taxonomy Singular Name', $labels['post_type'] ),
+				'menu_name'                  => __( $labels['singular'], $labels['post_type'] ),
+				'all_items'                  => __( 'All ' .$labels['plural'], $labels['post_type'] ),
+				'parent_item'                => __( 'Parent ' . $labels['singular'], $labels['post_type'] ),
+				'parent_item_colon'          => __( 'Parent ' .$labels['singular'] . ':', $labels['post_type'] ),
+				'new_item_name'              => __( 'New ' .$labels['singular'] . ' Name', $labels['post_type'] ),
+				'add_new_item'               => __( 'Add New ' . $labels['singular'], $labels['post_type'] ),
+				'edit_item'                  => __( 'Edit ' . $labels['singular'], $labels['post_type'] ),
+				'update_item'                => __( 'Update ' . $labels['singular'], $labels['post_type'] ),
+				'view_item'                  => __( 'View ' . $labels['singular'], $labels['post_type'] ),
+				'separate_items_with_commas' => __( 'Separate ' . $labels['singular'] . ' with commas', $labels['post_type'] ),
+				'add_or_remove_items'        => __( 'Add or remove ' .$labels['plural'], $labels['post_type'] ),
+				'choose_from_most_used'      => __( 'Choose from the most used', $labels['post_type'] ),
+				'popular_items'              => __( 'Popular ' .$labels['plural'], $labels['post_type'] ),
+				'search_items'               => __( 'Search ' .$labels['plural'], $labels['post_type'] ),
+				'not_found'                  => __( 'Not Found', $labels['post_type'] ),
+				'no_terms'                   => __( 'No ' .$labels['plural'], $labels['post_type'] ),
+				'items_list'                 => __( $labels['singular'] . ' list', $labels['post_type'] ),
+				'items_list_navigation'      => __( $labels['singular'] . ' list navigation', $labels['post_type'] ),
 			);
 		}
 		public static function args() {
