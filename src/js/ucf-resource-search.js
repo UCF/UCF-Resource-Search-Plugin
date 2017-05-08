@@ -169,8 +169,7 @@ var postTypeSearch = function ($) {
 
                     // Copy the associated elements
                     $.each(matches, function (match_index, post_id) {
-                        // TODO: change this back the by_tem
-                        var element = by_alpha.find('li[data-post-id="' + post_id + '"]:eq(0)'),
+                        var element = by_term.find('li[data-post-id="' + post_id + '"]:eq(0)'),
                             post_id_int = parseInt(post_id, 10);
                         post_id_sum += post_id_int;
                         if (element.length === 1) {

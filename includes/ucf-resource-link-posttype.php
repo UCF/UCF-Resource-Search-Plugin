@@ -163,7 +163,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 				'show_ui'               => true,
 				'show_in_menu'          => true,
 				'menu_position'         => 5,
-				'menu_icon'             => 'dashicons-welcome-widgets-menus',
+				'menu_icon'             => 'dashicons-admin-links',
 				'show_in_admin_bar'     => true,
 				'show_in_nav_menus'     => true,
 				'can_export'            => true,
@@ -188,6 +188,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 			return $retval;
 		}
 	}
+	add_action( 'init', array( 'UCF_Resource_Link_Type', 'register_resource_link_type' ), 10, 0 );
 	add_action( 'init', array( 'UCF_Resource_Link_PostType', 'register' ), 10, 0 );
 }
 ?>
