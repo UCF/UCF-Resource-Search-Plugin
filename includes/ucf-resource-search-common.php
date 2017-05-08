@@ -71,7 +71,7 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 
 			$after = self::ucf_resource_search_display_after( $resource );
 			if ( has_filter( 'ucf_resource_search_display_after' ) ) {
-				$after += apply_filters( 'ucf_resource_search_display_after', $output, $resource );
+				$after = apply_filters( 'ucf_resource_search_display_after', $output, $resource );
 			}
 
 			$retval = $before . $content . $after;

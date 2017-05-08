@@ -13,57 +13,17 @@ var PostTypeSearchData = function (column_count, column_width, data) {
 };
 
 /* Call A-Z Index Scrollspy, organize post type search */
-var resourceSearch = function ($) {
+var addJumpLinks = function ($) {
     if ($('.resource-search').length > 0) {
-
-        var $indexList = $('#index-list');
-
-        // Post type search customizations
-        $('.resource-search-header').prepend($indexList);
-
         $('.resource-search-alpha h3').each(function () {
             $(this)
-                .parent('div').prepend('<div class="az-jumpto-anchor" id="az-' + $(this).text().toLowerCase() + '" />')
+                .parent('div').prepend('<div class="jump-to-anchor" id="az-' + $(this).text().toLowerCase() + '" />')
                 .children('h3').after('<span class="back-to-top"><span class="glyphicon glyphicon-arrow-up"></span> <a href="#top">Back to Top</a></span>');
         });
-
-        // Activate Scrollspy
-        if (typeof scrollspy !== 'undefined') {
-            $('body').attr({ 'data-spy': 'scroll', 'data-offset': 80, 'data-target': '#index-list' });
-            $indexList.scrollspy();
-
-            if (jQuery.browser.safari) {
-                $indexList.attr('data-spy', '');
-            }
-
-            var $indexListNav = $indexList.find('.nav');
-
-            // Force 'A' as the active starting letter, since it likes to
-            // default to 'Z' for whatever reason
-            $indexListNav.find('li.active').removeClass('active');
-            $indexListNav.find('li:first-child').addClass('active');
-
-            // Reset active letter link when 'Back to Top' is clicked
-            $('.backtotop a').click(function () {
-                $indexListNav.find('li.active').removeClass('active');
-                $indexListNav.find('li:first-child').addClass('active');
-            });
-
-            // Set disabled letters for sections with no content
-            $('.az-jumpto-anchor').each(function () {
-                if ($(this).siblings('ul').children().length < 1) {
-                    var href = '#' + $(this).attr('id');
-                    $indexListNav.find('li a[href="' + href + '"]').addClass('disabled');
-                }
-            });
-            $indexListNav.find('li a.disabled').click(function (e) {
-                e.preventDefault();
-            });
-        }
     }
 };
 
-var postTypeSearch = function ($) {
+var resourceSearch = function ($) {
 
     $('.resource-search')
         .each(function (post_type_search_index, post_type_search) {
@@ -91,10 +51,8 @@ var postTypeSearch = function ($) {
                 MINIMUM_SEARCH_MATCH_LENGTH = 2;
 
             // Get the post data for this search
-            console.log(PostTypeSearchDataManager);
             post_type_search_data = PostTypeSearchDataManager.searches[post_type_search_index];
             if (typeof post_type_search_data === 'undefined') { // Search data missing
-                console.log('search data missing');
                 return false;
             }
 
@@ -219,7 +177,7 @@ var postTypeSearch = function ($) {
 if (typeof jQuery !== 'undefined') {
     jQuery(document).ready(function ($) {
         resourceSearch($);
-        postTypeSearch($);
+        addJumpLinks($);
     });
 } else {
     console.log('jQuery dependency failed to load');
