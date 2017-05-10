@@ -13,24 +13,6 @@ $screen-lg-min: 1200px;
 
 .resource-search {
 
-  .resource-search-label {
-    width: 100%;
-  }
-
-  .resource-search-input {
-    border-radius: 0;
-    font-size: 16px;
-    font-weight: normal;
-    height: 50px;
-    position: relative;
-    width: 100%;
-    z-index: 1;
-
-    @media (min-width: $screen-sm-min) {
-      height: 60px;
-    }
-  }
-
   .resource-search-result-list {
     background-color: $gray-lighter;
     margin-top: 15px;
@@ -56,93 +38,49 @@ $screen-lg-min: 1200px;
     }
   }
 
-  .resource-search-message {
-    color: $gray;
+  // Athena Framework classes
+  // scss-lint:disable ImportantRule
+  .align-items-end {
+    align-items: flex-end !important;
+  }
+
+  .justify-content-between {
+    justify-content: space-between !important;
+  }
+
+  .d-flex {
+    display: flex !important;
+  }
+  // scss-lint:enable ImportantRule
+
+  .font-italic {
     font-style: italic;
-    margin-top: 20px;
-    padding: 0;
   }
 
-  .jump-to-list {
-    margin: 30px 0;
-
-    .btn {
-      min-width: 25px;
-      padding: 8px 0;
-    }
-
-    @media (min-width: $screen-sm-min) {
-      margin: 50px 0;
-
-      .btn {
-        min-width: 30px;
-      }
-    }
-
-    @media (min-width: $screen-md-min) {
-
-      .btn {
-        min-width: 24px;
-      }
-    }
-  }
-
-  .resource-search-list {
-    padding-left: 25px;
-    padding-top: 10px;
-
-    li {
-      font-size: 16px;
-      line-height: 1.3;
-      margin-bottom: .8em;
-    }
-  }
-
-  .back-to-top {
-    bottom: 15px;
-    color: $gray;
-    font-size: 14px;
-    position: absolute;
-    right: 0;
-    text-transform: uppercase;
-  }
-
-  .resource-search-alpha {
-    margin-top: 20px;
-
-    @media (min-width: $screen-sm-min) {
-      margin-top: 30px;
-    }
-  }
-
-  .resource-search-heading {
-    display: inline-block;
-    font-size: 65px;
-    line-height: .8;
-    margin-bottom: 8px;
-    margin-top: 0;
-
-    @media (min-width: $screen-sm-min) {
-      font-size: 80px;
-    }
-  }
-
-  .resource-search-heading-wrap {
-    background-color: $white;
-    position: relative;
-
-    @media (min-width: $screen-sm-min) {
-      border-bottom-width: 15px;
-    }
-  }
-
-  // Utilities
   .font-sans-serif {
     font-family: $font-family-sans-serif;
   }
 
   .font-slab-serif {
     font-family: $font-family-slab-serif;
+  }
+
+  .form-control-lg {
+    font-size: 1.25rem;
+    padding: calc(.75rem + 2px) .75rem;
+
+    @media (min-width: $screen-sm-min) {
+      font-size: 1.25rem;
+      padding: calc(1.25rem + 2px) .75rem;
+    }
+  }
+
+  .h1 {
+    font-size: 2rem;
+
+    @media (min-width: $screen-sm-min) {
+      font-size: 2.8rem;
+    }
   }
 
   .hidden-xs-up {
@@ -158,6 +96,30 @@ $screen-lg-min: 1200px;
 
   .hr-3 {
     border-width: 5px;
+  }
+
+  .mb-0 {
+    margin-bottom: 0;
+  }
+
+  .mb-5 {
+    margin-bottom: 3rem;
+  }
+
+  .mt-3 {
+    margin-top: 1rem;
+  }
+
+  .mt-5 {
+    margin-top: 3rem;
+  }
+
+  .p-1 {
+    padding: 1rem;
+  }
+
+  .text-default {
+    color: $gray;
   }
 
   .text-uppercase {

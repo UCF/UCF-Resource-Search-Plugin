@@ -12,17 +12,6 @@ var PostTypeSearchData = function (column_count, column_width, data) {
     this.data = data;
 };
 
-/* Call A-Z Index Scrollspy, organize post type search */
-var addJumpLinks = function ($) {
-    if ($('.resource-search').length > 0) {
-        $('.resource-search-alpha h3').each(function () {
-            $(this)
-                .parent('div').prepend('<div class="jump-to-anchor" id="az-' + $(this).text().toLowerCase() + '" />')
-                .children('h3').after('<span class="back-to-top"><span class="glyphicon glyphicon-arrow-up"></span> <a href="#top">Back to Top</a></span>');
-        });
-    }
-};
-
 var resourceSearch = function ($) {
 
     $('.resource-search')
@@ -96,7 +85,7 @@ var resourceSearch = function ($) {
 
             function display_search_message(message) {
                 results.empty();
-                results.append($('<p class="resource-search-message"><big>' + message + '</big></p>'));
+                results.append($('<p class="resource-search-message font-italic text-default mt-3"><big>' + message + '</big></p>'));
                 results.show();
             }
 

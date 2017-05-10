@@ -201,13 +201,15 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 		?>
 			<div class="resource-search">
 				<div class="resource-search-header">
-					<form class="resource-search-form form-inline" action="." method="get">
-						<label class="resource-search-label">
-							<h2 class="h4 font-sans-serif text-uppercase">
-								<?php echo $params['default_search_label']; ?>
-							</h2>
-							<input type="text" class="form-control resource-search-input" placeholder="<?php echo $params['default_search_text']; ?>">
-						</label>
+					<form class="resource-search-form" action="." method="get">
+						<div class="form-group">
+							<label class="resource-search-label" for="resource-search-input">
+								<h2 class="h5 font-sans-serif text-uppercase">
+									<?php echo $params['default_search_label']; ?>
+								</h2>
+							</label>
+							<input type="text" id="resource-search-input" name="resource-search-input" class="form-control form-control-lg resource-search-input" placeholder="<?php echo $params['default_search_text']; ?>">
+						</div>
 					</form>
 				</div>
 				<div class="resource-search-results"></div>
@@ -222,35 +224,35 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 				</div>
 				<?php } ?>
 
-				<div class="btn-toolbar jump-to-list" role="toolbar" aria-label="Jump To List">
+				<div class="btn-toolbar jump-to-list mt-5 mb-5" role="toolbar" aria-label="Jump To List">
 					<div class="btn-group" role="group">
-						<a href="#az-a" class="btn btn-default">A</a>
-						<a href="#az-b" class="btn btn-default">B</a>
-						<a href="#az-c" class="btn btn-default">C</a>
-						<a href="#az-d" class="btn btn-default">D</a>
-						<a href="#az-e" class="btn btn-default">E</a>
-						<a href="#az-f" class="btn btn-default">F</a>
-						<a href="#az-g" class="btn btn-default">G</a>
-						<a href="#az-h" class="btn btn-default">H</a>
-						<a href="#az-i" class="btn btn-default">I</a>
-						<a href="#az-j" class="btn btn-default">J</a>
-						<a href="#az-k" class="btn btn-default">K</a>
-						<a href="#az-l" class="btn btn-default">L</a>
-						<a href="#az-m" class="btn btn-default">M</a>
-						<br class="visible-xs visible-sm">
-						<a href="#az-n" class="btn btn-default">N</a>
-						<a href="#az-o" class="btn btn-default">O</a>
-						<a href="#az-p" class="btn btn-default">P</a>
-						<a href="#az-q" class="btn btn-default disabled">Q</a>
-						<a href="#az-r" class="btn btn-default">R</a>
-						<a href="#az-s" class="btn btn-default">S</a>
-						<a href="#az-t" class="btn btn-default">T</a>
-						<a href="#az-u" class="btn btn-default">U</a>
-						<a href="#az-v" class="btn btn-default">V</a>
-						<a href="#az-w" class="btn btn-default">W</a>
-						<a href="#az-x" class="btn btn-default disabled">X</a>
-						<a href="#az-y" class="btn btn-default disabled">Y</a>
-						<a href="#az-z" class="btn btn-default disabled">Z</a>
+						<a href="#jump-to-a" class="btn btn-default p-1">A</a>
+						<a href="#jump-to-b" class="btn btn-default p-1">B</a>
+						<a href="#jump-to-c" class="btn btn-default p-1">C</a>
+						<a href="#jump-to-d" class="btn btn-default p-1">D</a>
+						<a href="#jump-to-e" class="btn btn-default p-1">E</a>
+						<a href="#jump-to-f" class="btn btn-default p-1">F</a>
+						<a href="#jump-to-g" class="btn btn-default p-1">G</a>
+						<a href="#jump-to-h" class="btn btn-default p-1">H</a>
+						<a href="#jump-to-i" class="btn btn-default p-1">I</a>
+						<a href="#jump-to-j" class="btn btn-default p-1">J</a>
+						<a href="#jump-to-k" class="btn btn-default p-1">K</a>
+						<a href="#jump-to-l" class="btn btn-default p-1">L</a>
+						<a href="#jump-to-m" class="btn btn-default p-1">M</a>
+						<br class="hidden-md-up">
+						<a href="#jump-to-n" class="btn btn-default p-1">N</a>
+						<a href="#jump-to-o" class="btn btn-default p-1">O</a>
+						<a href="#jump-to-p" class="btn btn-default p-1">P</a>
+						<a href="#jump-to-q" class="btn btn-default p-1 disabled">Q</a>
+						<a href="#jump-to-r" class="btn btn-default p-1">R</a>
+						<a href="#jump-to-s" class="btn btn-default p-1">S</a>
+						<a href="#jump-to-t" class="btn btn-default p-1">T</a>
+						<a href="#jump-to-u" class="btn btn-default p-1">U</a>
+						<a href="#jump-to-v" class="btn btn-default p-1">V</a>
+						<a href="#jump-to-w" class="btn btn-default p-1">W</a>
+						<a href="#jump-to-x" class="btn btn-default p-1 disabled">X</a>
+						<a href="#jump-to-y" class="btn btn-default p-1 disabled">Y</a>
+						<a href="#jump-to-z" class="btn btn-default p-1 disabled">Z</a>
 					</div>
 				</div>
 
@@ -282,8 +284,8 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 							</div>
 								<div class="row">
 									<div class="<?php echo $params['column_width']; ?>">
-										<div class="resource-search-heading-wrap">
-											<h3 class="resource-search-heading font-slab-serif"><?php echo esc_html( $section_title ); ?></h3>
+										<div class="resource-search-heading-wrap d-flex justify-content-between" id="jump-to-<?php echo strtolower( esc_html( $section_title ) ); ?>">
+											<h3 class="h1 resource-search-heading font-slab-serif"><?php echo esc_html( $section_title ); ?></h3>
 											<hr class="hr-3 hr-primary">
 										</div>
 									</div>
@@ -314,10 +316,11 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 							<?php endif; ?>
 
 							<div class="<?php echo $params['column_width']; ?>">
-								<div class="resource-search-heading-wrap">
-									<h3 class="resource-search-heading font-slab-serif"><?php echo esc_html( $section_title ); ?></h3>
-									<hr class="hr-3 hr-primary">
+								<div class="resource-search-heading-wrap d-flex justify-content-between align-items-end" id="jump-to-<?php echo strtolower( esc_html( $section_title ) ); ?>">
+									<h3 class="h1 resource-search-heading font-slab-serif mb-0"><?php echo esc_html( $section_title ); ?></h3>
+									<div class="back-to-top"><span class="glyphicon glyphicon-arrow-up"></span> <a href="#top">Back to Top</a></div>
 								</div>
+								<hr class="hr-3 hr-primary">
 								<ul class="resource-search-list">
 								<?php foreach( $section_posts as $post ): ?>
 									<li data-post-id="<?php echo $post->ID; ?>">
