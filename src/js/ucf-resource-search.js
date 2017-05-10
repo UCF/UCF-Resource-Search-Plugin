@@ -166,7 +166,6 @@ var resourceSearch = function ($) {
 if (typeof jQuery !== 'undefined') {
     jQuery(document).ready(function ($) {
         resourceSearch($);
-        addJumpLinks($);
     });
 } else {
     console.log('jQuery dependency failed to load');
