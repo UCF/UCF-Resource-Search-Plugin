@@ -318,8 +318,7 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 							<div class="<?php echo $params['column_width']; ?>">
 								<div class="resource-search-heading-wrap d-flex justify-content-between align-items-end" id="jump-to-<?php echo strtolower( esc_html( $section_title ) ); ?>">
 									<h3 class="h1 resource-search-heading font-slab-serif mb-0"><?php echo esc_html( $section_title ); ?></h3>
-									<div class="back-to-top"><span class="glyphicon glyphicon-arrow-up"></span> <a href="#top">Back to Top</a></div>
-								</div>
+									<div class="back-to-top"><span class="glyphicon glyphicon-arrow-up"></span> <a href="#top">Back to Top</a></div></div>
 								<hr class="hr-3 hr-primary">
 								<ul class="resource-search-list">
 								<?php foreach( $section_posts as $post ): ?>
