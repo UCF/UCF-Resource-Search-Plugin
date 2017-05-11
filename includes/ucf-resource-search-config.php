@@ -4,6 +4,9 @@
  */
 if ( ! class_exists( 'UCF_Resource_Search_Config' ) ) {
 	class UCF_Resource_Search_Config {
+		public static
+			$option_prefix = 'ucf_resource_search_';
+
 		public static function add_options_page() {
 			add_options_page(
 				'UCF Resource Search',
@@ -17,11 +20,23 @@ if ( ! class_exists( 'UCF_Resource_Search_Config' ) ) {
 			);
 			add_action( 'admin_init', array( 'UCF_Resource_Search_Config', 'register_settings' ) );
 		}
-		public static function register_settings() {
-			register_setting( 'ucf-resource-search-group', 'ucf_resource_search_include_css' );
+
+		/**
+		 * Deletes options via the WP Options API that are utilized by the
+		 * plugin.  Intended to be run on plugin uninstallation.
+		 *
+		 * @return void
+		 **/
+		public static function delete_options() {
+			delete_option( self::$option_prefix . 'include_css' );
 		}
+
+		public static function register_settings() {
+			register_setting( 'ucf-resource-search-group', self::$option_prefix . 'include_css' );
+		}
+
 		public static function add_settings_page() {
-			$ucf_resource_search_include_css = get_option( 'ucf_resource_search_include_css', 'on' );
+			$ucf_resource_search_include_css = get_option( self::$option_prefix . 'include_css', 'on' );
 	?>
 			<div class="wrap">
 			<h1>UCF Resource Search Settings</h1>
