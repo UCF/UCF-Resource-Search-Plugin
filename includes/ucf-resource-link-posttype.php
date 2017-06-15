@@ -18,7 +18,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 			add_action( 'save_post', array( 'UCF_Resource_Link_PostType', 'save_metabox' ) );
 		}
 
-		public function get_labels() {
+		public static function get_labels() {
 			return apply_filters(
 				'ucf_resource_link_labels',
 				array(
