@@ -24,7 +24,10 @@ The ucf-resource-search shortcode has several options:
 
 ## Changelog ##
 
-### 1.0 ###
+### 1.0.1 ###
+* Fixed PHP notices
+
+### 1.0.0 ###
 * Initial release
 
 
