@@ -40,7 +40,7 @@ gulp.task('css-main', function() {
     .pipe(rename('ucf-resource-search.min.css'))
     .pipe(bless())
     .pipe(gulp.dest(config.cssPath))
-    .pipe(browserSync.reload({stream: true}));
+    .pipe(browserSync.stream());
 });
 
 // All css-related tasks

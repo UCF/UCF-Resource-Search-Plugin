@@ -47,7 +47,7 @@ if ( ! class_exists( 'UCF_Resource_Search_Config' ) ) {
 					<tr>
 						<th scope="row">Include CSS</th>
 						<td><input type="checkbox" name="ucf_resource_search_include_css" <?php echo ( $ucf_resource_search_include_css === 'on' ) ? 'checked' : ''; ?>>
-							Include Default CSS (Leave unchecked if the Athena Framework is included in the theme.)
+							Include Default CSS
 						</input></td>
 					</tr>
 				<?php submit_button(); ?>
