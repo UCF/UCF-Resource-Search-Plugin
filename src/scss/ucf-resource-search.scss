@@ -53,18 +53,17 @@ $screen-lg-min: 1200px;
   }
 
   .jump-to-list {
+    display: block;
     margin: 2em 0;
 
     @media (min-width: $screen-lg-min) {
-
-      .break {
-        display: none;
-      }
+      display: flex;
     }
 
     a {
       font-weight: normal;
-      padding: .4em;
+      padding: .3em;
+      width: 25px;
     }
   }
 

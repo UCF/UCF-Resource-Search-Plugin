@@ -237,7 +237,8 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 						<a href="#jump-to-k" class="btn btn-default">K</a>
 						<a href="#jump-to-l" class="btn btn-default">L</a>
 						<a href="#jump-to-m" class="btn btn-default">M</a>
-						<br class="visible-xs visible-sm">
+					</div>
+					<div class="btn-group" role="group">
 						<a href="#jump-to-n" class="btn btn-default">N</a>
 						<a href="#jump-to-o" class="btn btn-default">O</a>
 						<a href="#jump-to-p" class="btn btn-default">P</a>
