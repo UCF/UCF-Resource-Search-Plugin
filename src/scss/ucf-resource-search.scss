@@ -19,6 +19,7 @@ $screen-lg-min: 1200px;
   .resource-search-input {
     font-size: 1.25rem;
     padding: 1em;
+    width: 100%;
   }
 
   .resource-search-message {
@@ -67,7 +68,7 @@ $screen-lg-min: 1200px;
     a {
       font-weight: normal;
       padding: .3em;
-      width: 25px;
+      width: 28px;
     }
   }
 

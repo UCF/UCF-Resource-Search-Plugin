@@ -202,14 +202,12 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 			<div class="resource-search">
 				<div class="resource-search-header">
 					<form class="resource-search-form" action="." method="get">
-						<div class="form-group">
-							<label class="resource-search-label" for="resource-search-input">
-								<h2>
-									<?php echo $params['default_search_label']; ?>
-								</h2>
-							</label>
-							<input type="text" id="resource-search-input" name="resource-search-input" class="form-control resource-search-input" placeholder="<?php echo $params['default_search_text']; ?>">
-						</div>
+						<label class="resource-search-label" for="resource-search-input">
+							<h2>
+								<?php echo $params['default_search_label']; ?>
+							</h2>
+						</label>
+						<input type="text" id="resource-search-input" name="resource-search-input" class="resource-search-input" placeholder="<?php echo $params['default_search_text']; ?>">
 					</form>
 				</div>
 				<div class="resource-search-results"></div>
@@ -224,34 +222,14 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 
 				<div class="btn-toolbar jump-to-list" role="toolbar" aria-label="Jump To List">
 					<div class="btn-group" role="group">
-						<a href="#jump-to-a" class="btn btn-default">A</a>
-						<a href="#jump-to-b" class="btn btn-default">B</a>
-						<a href="#jump-to-c" class="btn btn-default">C</a>
-						<a href="#jump-to-d" class="btn btn-default">D</a>
-						<a href="#jump-to-e" class="btn btn-default">E</a>
-						<a href="#jump-to-f" class="btn btn-default">F</a>
-						<a href="#jump-to-g" class="btn btn-default">G</a>
-						<a href="#jump-to-h" class="btn btn-default">H</a>
-						<a href="#jump-to-i" class="btn btn-default">I</a>
-						<a href="#jump-to-j" class="btn btn-default">J</a>
-						<a href="#jump-to-k" class="btn btn-default">K</a>
-						<a href="#jump-to-l" class="btn btn-default">L</a>
-						<a href="#jump-to-m" class="btn btn-default">M</a>
+					<?php foreach ( range( 'a', 'm' ) as $alpha ) : ?>
+						<a href="#jump-to-<?php echo $alpha; ?>" class="btn btn-default"><?php echo strtoupper( $alpha ); ?></a>
+					<?php endforeach; ?>
 					</div>
 					<div class="btn-group" role="group">
-						<a href="#jump-to-n" class="btn btn-default">N</a>
-						<a href="#jump-to-o" class="btn btn-default">O</a>
-						<a href="#jump-to-p" class="btn btn-default">P</a>
-						<a href="#jump-to-q" class="btn btn-default">Q</a>
-						<a href="#jump-to-r" class="btn btn-default">R</a>
-						<a href="#jump-to-s" class="btn btn-default">S</a>
-						<a href="#jump-to-t" class="btn btn-default">T</a>
-						<a href="#jump-to-u" class="btn btn-default">U</a>
-						<a href="#jump-to-v" class="btn btn-default">V</a>
-						<a href="#jump-to-w" class="btn btn-default">W</a>
-						<a href="#jump-to-x" class="btn btn-default">X</a>
-						<a href="#jump-to-y" class="btn btn-default">Y</a>
-						<a href="#jump-to-z" class="btn btn-default">Z</a>
+					<?php foreach ( range( 'n', 'z' ) as $alpha ) : ?>
+						<a href="#jump-to-<?php echo $alpha; ?>" class="btn btn-default"><?php echo strtoupper( $alpha ); ?></a>
+					<?php endforeach; ?>
 					</div>
 				</div>
 
