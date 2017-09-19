@@ -85,7 +85,7 @@ var resourceSearch = function ($) {
 
             function display_search_message(message) {
                 results.empty();
-                results.append($('<p class="resource-search-message font-italic text-default mt-3"><big>' + message + '</big></p>'));
+                results.append($('<p class="resource-search-message"><big>' + message + '</big></p>'));
                 results.show();
             }
 
@@ -116,7 +116,7 @@ var resourceSearch = function ($) {
 
                     // Copy the associated elements
                     $.each(matches, function (match_index, post_id) {
-                        var element = by_term.find('li[data-post-id="' + post_id + '"]:eq(0)'),
+                        var element = by_alpha.find('li[data-post-id="' + post_id + '"]:eq(0)'),
                             post_id_int = parseInt(post_id, 10);
                         post_id_sum += post_id_int;
                         if (element.length === 1) {
@@ -163,8 +163,18 @@ var resourceSearch = function ($) {
         });
 };
 
+var setDisabledJumpLinks = function ($) {
+  $links = $('.jump-to-list').find('a');
+  $.each($links, function(index, element) {
+    if ($($(element).attr('href')).length === 0) {
+      $(element).addClass('disabled');
+    }
+  }, this);
+};
+
 if (typeof jQuery !== 'undefined') {
     jQuery(document).ready(function ($) {
         resourceSearch($);
+        setDisabledJumpLinks($);
     });
 }
