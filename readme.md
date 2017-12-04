@@ -1,6 +1,6 @@
 # UCF Resource Search #
 
-Provides a shortcode, functions, and default styles for displaying an a resource search input and list of resources.
+Provides a custom post type, shortcode, functions, and default styles for displaying a resource search input and list of resources.
 
 
 ## Description ##
@@ -24,6 +24,8 @@ The ucf-resource-search shortcode has several options:
 
 ## Changelog ##
 
+### 1.0.3 ###
+* Updated plugin description
 
 ### 1.0.2 ###
 * Fixed PHP notices
