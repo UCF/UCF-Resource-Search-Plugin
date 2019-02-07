@@ -1,19 +1,45 @@
 {
-  "private": true,
+  "name": "ucf-resource-search-plugin",
+  "version": "1.0.4",
+  "author": {
+    "name": "UCF Web Communications",
+    "email": "webcom@ucf.edu",
+    "url": "https://github.com/UCF"
+  },
+  "description": "Provides a shortcodes and CPT for Resource Links.",
+  "homepage": "https://github.com/UCF/UCF-Resource-Search-Plugin",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "UCF/UCF-Resource-Search-Plugin"
+  },
+  "license": "MIT",
+  "files": [
+    "static",
+    "src"
+  ],
   "devDependencies": {
-    "browser-sync": "^2.10.0",
-    "gulp": "~3.9.1",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-bless": "3.0.x",
-    "gulp-clean-css": "^2.0.13",
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-es2015-modules-strip": "^0.1.1",
+    "browser-sync": "^2.26.3",
+    "eslint": "^5.10.0",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-eslint": "^5.0.0",
+    "gulp-eslint-if-fixed": "^1.0.0",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "~2.3.2",
-    "gulp-scss-lint": "^0.4.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-jshint": "^2.0.4",
-    "gulp-uglify": "^2.1.2",
-    "jshint": "^2.9.1",
-    "merge": "^1.2.0",
-    "jshint-stylish": "^2.2.1"
-  }
+    "gulp-sass-lint": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.1",
+    "gulp-readme-to-markdown": "^0.2.1"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not ie 10"
+  ]
 }
