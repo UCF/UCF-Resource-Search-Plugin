@@ -22,6 +22,9 @@ add_action( 'plugins_loaded', function() {
 	require_once 'includes/ucf-resource-link-posttype.php';
 	require_once 'shortcodes/ucf-resource-search-shortcode.php';
 
+	require_once 'layouts/ucf-resource-link-classic.php';
+	require_once 'layouts/ucf-resource-link-card.php';
+
 	add_action( 'admin_menu', array( 'UCF_Resource_Search_Config', 'add_options_page' ) );
 
 } );

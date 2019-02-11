@@ -7,7 +7,7 @@
 
 if ( ! class_exists( 'UCF_Resource_Search_Shortcode' ) ) {
 	class UCF_Resource_Search_Shortcode {
-		public static function shortcode( $params ) {
+		public static function shortcode( $args ) {
 			$defaults = array(
 				'post_type_name'          => 'post',
 				'taxonomy'                => 'category',
@@ -23,12 +23,13 @@ if ( ! class_exists( 'UCF_Resource_Search_Shortcode' ) ) {
 				'default_sorting'         => 'term',
 				'show_sorting'            => true,
 				'show_uncategorized'      => false,
-				'uncategorized_term_name' => 'Uncategorized'
+				'uncategorized_term_name' => 'Uncategorized',
+				'layout'                  => 'classic'
 			);
 
-			$params = ( $params === '' ) ? $defaults : array_merge( $defaults, $params );
+			$args = ( $args === '' ) ? $defaults : array_merge( $defaults, $args );
 
-			return UCF_Resource_Search_Common::display_resource_search( $params );
+			return UCF_Resource_Search_Common::display_resource_search( $args );
 		}
 	}
 	add_shortcode( 'ucf-resource-search', array( 'UCF_Resource_Search_Shortcode', 'shortcode' ) );
