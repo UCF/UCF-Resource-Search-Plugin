@@ -24,6 +24,7 @@ The ucf-resource-search shortcode has several options:
 * show_uncategorized - true|false
 * uncategorized_term_name - Uncategorized
 * layout - classic or card
+* resource_link_type_filter - filter results by resource_link_type
 
 ## Installation ##
 

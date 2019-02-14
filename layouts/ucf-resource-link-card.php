@@ -14,11 +14,26 @@ if ( ! function_exists( 'ucf_resource_link_display_card_before' ) ) {
 if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 
 	function ucf_resource_link_display_card( $content, $args ) {
-		$posts = get_posts( array(
-			'posts_per_page' => -1,
-			'post_type'      => $args['post_type_name'],
-			'orderby'        => $args['order_by'],
-			'sort_order'     => $args['order'] )
+		$tax_query = null;
+
+		if( !empty( $args['resource_link_type_filter'] ) ) {
+			$tax_query = array(
+				array(
+					'taxonomy' => 'resource_link_types',
+					'field' => 'slug',
+					'terms' => $args['resource_link_type_filter']
+				)
+			);
+		}
+
+		$posts = get_posts(
+			array(
+				'posts_per_page' => -1,
+				'post_type'      => $args['post_type_name'],
+				'orderby'        => $args['order_by'],
+				'sort_order'     => $args['order'],
+				'tax_query'      => $tax_query
+			)
 		);
 
 		ob_start();

@@ -24,7 +24,8 @@ if ( ! class_exists( 'UCF_Resource_Search_Shortcode' ) ) {
 				'show_sorting'            => true,
 				'show_uncategorized'      => false,
 				'uncategorized_term_name' => 'Uncategorized',
-				'layout'                  => 'classic'
+				'layout'                  => 'classic',
+				'resource_type_filter'    => ''
 			);
 
 			$args = ( $args === '' ) ? $defaults : array_merge( $defaults, $args );
