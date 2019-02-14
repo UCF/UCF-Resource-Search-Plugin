@@ -146,6 +146,7 @@ if ( ! function_exists( 'ucf_resource_link_display_classic' ) ) {
 			'resource-search-term'  => $by_term,
 			'resource-search-alpha' => $by_alpha,
 		);
+		ob_start();
 	?>
 		<div class="resource-search">
 			<div class="resource-search-header">
@@ -267,7 +268,8 @@ if ( ! function_exists( 'ucf_resource_link_display_classic' ) ) {
 
 		</div><!-- .resource-search -->
 	<?php
-		return $script . ob_get_clean();
+		$content = ob_get_clean();
+		return $script . $content;
 	}
 }
 add_filter( 'ucf_resource_link_display_classic', 'ucf_resource_link_display_classic', 10, 2 );

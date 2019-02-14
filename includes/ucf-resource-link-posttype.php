@@ -64,12 +64,17 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 			wp_nonce_field( 'ucf_resource_link_nonce_save', 'ucf_resource_link_nonce' );
 			$url = get_post_meta( $post->ID, 'ucf_resource_link_url', TRUE );
 			$admins = get_post_meta( $post->ID, 'ucf_resource_link_admins', TRUE );
+			$facebook = get_post_meta( $post->ID, 'ucf_resource_facebook_url', TRUE );
+			$twitter = get_post_meta( $post->ID, 'ucf_resource_twitter_url', TRUE );
+			$instagram = get_post_meta( $post->ID, 'ucf_resource_instagram_url', TRUE );
+			$linkedin = get_post_meta( $post->ID, 'ucf_resource_linkedin_url', TRUE );
+			$youtube = get_post_meta( $post->ID, 'ucf_resource_youtube_url', TRUE );
 ?>
 			<table class="form-table">
 				<tbody>
 					<tr>
 						<th>
-							<label class="block" for="ucf_resource_link_url"><strong>URL</strong></label>
+							<label class="block" for="ucf_resource_link_url"><strong>Website URL</strong></label>
 						</th>
 						<td>
 							<input type="text" id="ucf_resource_link_url" name="ucf_resource_link_url" class="regular-text" <?php echo ( ! empty( $url ) ) ? 'value="' . $url . '"' : ''; ?>>
@@ -77,11 +82,56 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 					</tr>
 					<tr>
 						<th>
+							<label class="block" for="ucf_resource_facebook_url"><strong>Facebook URL</strong></label>
+						</th>
+						<td>
+							<input type="text" id="ucf_resource_facebook_url" name="ucf_resource_facebook_url" class="regular-text" <?php echo ( ! empty( $facebook ) ) ? 'value="' . $facebook . '"' : ''; ?>>
+							<p class="description">The resource Facebook page URL. https://www.facebook.com/ResourceName/</p>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label class="block" for="ucf_resource_twitter_url"><strong>Twitter URL</strong></label>
+						</th>
+						<td>
+							<input type="text" id="ucf_resource_twitter_url" name="ucf_resource_twitter_url" class="regular-text" <?php echo ( ! empty( $twitter ) ) ? 'value="' . $twitter . '"' : ''; ?>>
+							<p class="description">The resource Twitter page URL. https://www.twitter.com/ResourceName/</p>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label class="block" for="ucf_resource_instagram_url"><strong>Instagram URL</strong></label>
+						</th>
+						<td>
+							<input type="text" id="ucf_resource_instagram_url" name="ucf_resource_instagram_url" class="regular-text" <?php echo ( ! empty( $instagram ) ) ? 'value="' . $instagram . '"' : ''; ?>>
+							<p class="description">The resource Instagram page URL. https://www.instagram.com/ResourceName/</p>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label class="block" for="ucf_resource_linkedin_url"><strong>LinkedIn URL</strong></label>
+						</th>
+						<td>
+							<input type="text" id="ucf_resource_linkedin_url" name="ucf_resource_linkedin_url" class="regular-text" <?php echo ( ! empty( $linkedin ) ) ? 'value="' . $linkedin . '"' : ''; ?>>
+							<p class="description">The resource LinkedIn page URL. https://www.linkedin.com/in/ResourceName/</p>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label class="block" for="ucf_resource_youtube_url"><strong>YouTube URL</strong></label>
+						</th>
+						<td>
+							<input type="text" id="ucf_resource_youtube_url" name="ucf_resource_youtube_url" class="regular-text" <?php echo ( ! empty( $youtube ) ) ? 'value="' . $youtube . '"' : ''; ?>>
+							<p class="description">The resource YouTube page URL. https://www.youtube.com/ResourceName</p>
+						</td>
+					</tr>
+					<tr>
+						<th>
 							<label class="block" for="ucf_resource_link_admins"><strong>Web Administrators</strong></label>
 						</th>
 						<td>
-							<p class="description">Add web administrator information here. Accepts HTML content.</p>
 							<textarea id="ucf_resource_link_admins" name="ucf_resource_link_admins" class="regular-text"><?php echo ( ! empty( $admins ) ) ? $admins : ''; ?></textarea>
+							<p class="description">Add web administrator information here. Accepts HTML content.</p>
 						</td>
 					</tr>
 				</tbody>
@@ -105,11 +155,39 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 					update_post_meta( $post_id, 'ucf_resource_link_url', $url );
 				}
 			}
-			if ( isset( $_POST['ucf_resource_link_admins'] ) ) {
+			if ( isset( $_POST['ucf_resource_facebook_url'] ) ) {
 				// Ensure field is valid.
-				$admins = $_POST['ucf_resource_link_admins'];
-				if ( $admins ) {
-					update_post_meta( $post_id, 'ucf_resource_link_admins', $admins );
+				$url = sanitize_text_field( $_POST['ucf_resource_facebook_url'] );
+				if ( $url ) {
+					update_post_meta( $post_id, 'ucf_resource_facebook_url', $url );
+				}
+			}
+			if ( isset( $_POST['ucf_resource_twitter_url'] ) ) {
+				// Ensure field is valid.
+				$url = sanitize_text_field( $_POST['ucf_resource_twitter_url'] );
+				if ( $url ) {
+					update_post_meta( $post_id, 'ucf_resource_twitter_url', $url );
+				}
+			}
+			if ( isset( $_POST['ucf_resource_instagram_url'] ) ) {
+				// Ensure field is valid.
+				$url = sanitize_text_field( $_POST['ucf_resource_instagram_url'] );
+				if ( $url ) {
+					update_post_meta( $post_id, 'ucf_resource_instagram_url', $url );
+				}
+			}
+			if ( isset( $_POST['ucf_resource_linkedin_url'] ) ) {
+				// Ensure field is valid.
+				$url = sanitize_text_field( $_POST['ucf_resource_linkedin_url'] );
+				if ( $url ) {
+					update_post_meta( $post_id, 'ucf_resource_linkedin_url', $url );
+				}
+			}
+			if ( isset( $_POST['ucf_resource_youtube_url'] ) ) {
+				// Ensure field is valid.
+				$url = sanitize_text_field( $_POST['ucf_resource_youtube_url'] );
+				if ( $url ) {
+					update_post_meta( $post_id, 'ucf_resource_youtube_url', $url );
 				}
 			}
 		}
