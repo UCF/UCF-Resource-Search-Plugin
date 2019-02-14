@@ -8,21 +8,11 @@ if ( ! function_exists( 'ucf_resource_link_display_card_before' ) ) {
 	<?php
 		return ob_get_clean();
 	}
-	add_filter( 'ucf_resource_link_display_card_before', 'ucf_resource_link_display_card_before', 10, 3 );
-}
-
-if ( ! function_exists( 'ucf_resource_link_display_card_title' ) ) {
-	function ucf_resource_link_display_card_title( $content, $args ) {
-		$formatted_title = '';
-		if ( $title = $args['title'] ) {
-			$formatted_title = '<h2 class="ucf-resource-list-title">' . $title . '</h2>';
-		}
-		return $formatted_title;
-	}
-	add_filter( 'ucf_resource_link_display_card_title', 'ucf_resource_link_display_card_title', 10, 3 );
+	add_filter( 'ucf_resource_link_display_card_before', 'ucf_resource_link_display_card_before', 10, 2 );
 }
 
 if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
+
 	function ucf_resource_link_display_card( $content, $args ) {
 		$posts = get_posts( array(
 			'posts_per_page' => -1,
@@ -62,9 +52,10 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 			<div class="ucf-resource-list-error">No results found.</div>
 	<?php
 		endif;
+
 		return ob_get_clean();
 	}
-	add_filter( 'ucf_resource_link_display_card', 'ucf_resource_link_display_card', 10, 3 );
+	add_filter( 'ucf_resource_link_display_card', 'ucf_resource_link_display_card', 10, 2 );
 }
 
 if ( ! function_exists( 'ucf_resource_link_display_card_after' ) ) {
@@ -75,5 +66,5 @@ if ( ! function_exists( 'ucf_resource_link_display_card_after' ) ) {
 	<?php
 		return ob_get_clean();
 	}
-	add_filter( 'ucf_resource_link_display_card_after', 'ucf_resource_link_display_card_after', 10, 3 );
+	add_filter( 'ucf_resource_link_display_card_after', 'ucf_resource_link_display_card_after', 10, 2 );
 }

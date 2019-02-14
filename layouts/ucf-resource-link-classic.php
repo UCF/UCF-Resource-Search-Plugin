@@ -21,7 +21,7 @@ if ( ! function_exists( 'ucf_resource_link_display_classic_before' ) ) {
 		return ob_get_clean();
 	}
 }
-add_filter( 'ucf_resource_link_display_classic_before', 'ucf_resource_link_display_classic_before', 10, 3 );
+add_filter( 'ucf_resource_link_display_classic_before', 'ucf_resource_link_display_classic_before', 10, 2 );
 
 /**
  * Outputs the content of the resource.
@@ -270,7 +270,7 @@ if ( ! function_exists( 'ucf_resource_link_display_classic' ) ) {
 		return $script . ob_get_clean();
 	}
 }
-add_filter( 'ucf_resource_link_display_classic', 'ucf_resource_link_display_classic', 10, 3 );
+add_filter( 'ucf_resource_link_display_classic', 'ucf_resource_link_display_classic', 10, 2 );
 
 /**
  * Outputs the content of the resource.
@@ -293,6 +293,6 @@ if ( ! function_exists( 'ucf_resource_link_display_classic_after' ) ) {
 		return ob_get_clean();
 	}
 }
-add_filter( 'ucf_resource_link_display_classic_after', 'ucf_resource_link_display_classic_after', 10, 3 );
+add_filter( 'ucf_resource_link_display_classic_after', 'ucf_resource_link_display_classic_after', 10, 2 );
 
 ?>

@@ -168,6 +168,7 @@ gulp.task('watch', (done) => {
 
   gulp.watch(`${config.src.scssPath}/**/*.scss`, gulp.series('css', serverReload));
   gulp.watch(`${config.src.jsPath}/**/*.js`, gulp.series('js', serverReload));
+  gulp.watch(`./readme.txt`, gulp.series('readme'));
   gulp.watch(`./**/*.php`, serverReload);
 });
 

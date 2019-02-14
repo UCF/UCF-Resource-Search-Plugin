@@ -8,8 +8,22 @@ Provides a custom post type, shortcode, functions, and default styles for displa
 The resource search and links are added to pages using a ucf-resource-search shortcode.
 
 The ucf-resource-search shortcode has several options:
-* title - the title of the section to be displayed
-
+* post_type_name - post, page, etc
+* taxonomy - category
+* meta_key
+* meta_value
+* show_empty_sections - true|false
+* non_alpha_section_name - Other
+* column_width - col-md-4 col-sm-4
+* column_count - 3
+* order_by - title
+* order - ASC, DESC
+* show_sorting - true|false
+* default_sorting - term
+* show_sorting - true|false
+* show_uncategorized - true|false
+* uncategorized_term_name - Uncategorized
+* layout - classic or card
 
 ## Installation ##
 
@@ -22,8 +36,16 @@ The ucf-resource-search shortcode has several options:
 1. `$ wp plugin install --activate https://github.com/UCF/UCF-Resource-Search-Plugin/archive/master.zip`.  See [WP-CLI Docs](http://wp-cli.org/commands/plugin/install/) for more command options.
 2. Configure plugin settings from the WordPress admin under "Settings > UCF Resource Search".
 
+## Dependencies ##
+
+* Athena-Framework or Bootstrap 4 (if using the card layout)
+* FontAwesome (if using the card layout)
 
 ## Changelog ##
+
+### 1.0.4 ###
+* Added card layout option for ucf-resource-search shortcode
+* Added fields for social links
 
 ### 1.0.3 ###
 * Updated plugin description
