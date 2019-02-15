@@ -42,7 +42,7 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 			<div class="row">
 				<div class="ucf-resource-card-categories col-md-3 mb-4">
 				<?php
-					$taxonomy = 'category';
+					$taxonomy = 'resource_link_category';
 					$terms = get_terms( array(
 						'taxonomy'   => $taxonomy,
 						'hide_empty' => true,
@@ -52,8 +52,9 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 					?>
 						<h3 class="h5">Filter Directory</h3>
 						<ul class="list-unstyled">
+							<li><a href="#">Show All</a></li>
 							<?php foreach ( $terms as $term ) { ?>
-								<li><a href="<?php echo get_term_link( $term->slug, $taxonomy ); ?>" data-slug="<?php echo $term->slug; ?>"><?php echo $term->name; ?></a></li>
+								<li><a href="#<?php echo $term->slug; ?>"><?php echo $term->name; ?></a></li>
 							<?php } ?>
 						</ul>
 					<?php endif;?>
@@ -67,9 +68,15 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 					$instagram_url = get_post_meta( $post->ID, 'ucf_resource_instagram_url', TRUE );
 					$linkedin_url = get_post_meta( $post->ID, 'ucf_resource_linkedin_url', TRUE );
 					$youtube_url = get_post_meta( $post->ID, 'ucf_resource_youtube_url', TRUE );
+
+					if( !empty( $terms = get_the_terms( $post, $taxonomy ) ) ) {
+						$terms = implode(' ', array_map(function($x) { return $x->slug; }, $terms));
+					} else {
+						$terms = '';
+					}
 	?>
-					<div class="col-md-6 col-lg-4 mb-4">
-						<div class="card h-100 <?php echo get_the_terms( $post, $taxonomy ); ?>">
+					<div class="card-wrapper col-md-6 col-lg-4 mb-4 <?php echo $terms; ?>">
+						<div class="card h-100">
 							<div class="card-block pb-0">
 								<a href="<?php echo get_post_meta( $post->ID, 'ucf_resource_link_url', TRUE ); ?>">
 									<h4 class="ucf-resource-link-title card-title text-center h6"><?php echo $post->post_title; ?></h4>

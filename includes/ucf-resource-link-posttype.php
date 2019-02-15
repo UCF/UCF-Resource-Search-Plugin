@@ -256,7 +256,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 		public static function taxonomies() {
 			$retval = array(
 				'resource_link_types',
-				'category'
+				'resource_link_category'
 			);
 			$retval = apply_filters( 'resource_link_taxonomies', $retval );
 			foreach( $retval as $taxonomy ) {
@@ -268,6 +268,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 		}
 	}
 	add_action( 'init', array( 'UCF_Resource_Link_Type', 'register_resource_link_type' ), 10, 0 );
+	add_action( 'init', array( 'UCF_Resource_Link_Category', 'register_resource_link_category' ), 10, 0 );
 	add_action( 'init', array( 'UCF_Resource_Link_PostType', 'register' ), 10, 0 );
 }
 ?>

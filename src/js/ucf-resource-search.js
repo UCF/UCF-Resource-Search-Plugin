@@ -1,4 +1,4 @@
-let $cards;
+let $resource_link_cards;
 
 const PostTypeSearchDataManager = {
   searches: [],
@@ -7,13 +7,13 @@ const PostTypeSearchDataManager = {
   }
 };
 
-const PostTypeSearchData = function (column_count, column_width, data) {
+const PostTypeSearchData = (column_count, column_width, data) => {
   this.column_count = column_count;
   this.column_width = column_width;
   this.data = data;
 };
 
-const resourceSearch = function ($) {
+const resourceSearch = ($) => {
 
   $('.resource-search')
     .each((post_type_search_index, post_type_search) => {
@@ -168,7 +168,7 @@ const resourceSearch = function ($) {
     });
 };
 
-const setDisabledJumpLinks = function ($) {
+const setDisabledJumpLinks = ($) => {
   $links = $('.jump-to-list').find('a');
   $.each($links, (index, element) => {
     if ($($(element).attr('href')).length === 0) {
@@ -177,20 +177,25 @@ const setDisabledJumpLinks = function ($) {
   }, this);
 };
 
-function filterCards(e) {
-  const category = `.${$(e.target).attr('data-slug')}`;
-  $cards
-    .show()
-    .not(category).hide();
+function filterCards() {
+  const hash = window.location.hash.replace('#', '');
+  if (hash) {
+    $resource_link_cards
+      .show()
+      .not(`.${hash}`).hide();
+  } else {
+    $resource_link_cards
+      .show();
+  }
 }
 
-const addEventHandlers = function ($) {
-  $('.ucf-resource-card-categories').on('click', filterCards);
+const addEventHandlers = ($) => {
+  $(window).on('hashchange load', filterCards);
 };
 
 if (typeof jQuery !== 'undefined') {
   jQuery(document).ready(($) => {
-    $cards = $('.ucf-resource-directory-items .card');
+    $resource_link_cards = $('.ucf-resource-directory-items .card-wrapper');
 
     resourceSearch($);
     setDisabledJumpLinks($);
