@@ -42,12 +42,12 @@ if ( ! function_exists( 'ucf_resource_link_display_classic' ) ) {
 
 		// Set default search text if the user didn't
 		if ( !isset( $args['default_search_text'] ) ) {
-			$args['default_search_text'] = 'Find a '.$labels['singular'];
+			$args['default_search_text'] = 'Find a ' . $labels['singular'];
 		}
 
 		// Set default search label if the user didn't
 		if ( !isset( $args['default_search_label'] ) ) {
-			$args['default_search_label'] = 'Find a '.$labels['singular'];
+			$args['default_search_label'] = 'Find a ' . $labels['singular'];
 		}
 
 		// Register the search data with the JS PostTypeSearchDataManager.

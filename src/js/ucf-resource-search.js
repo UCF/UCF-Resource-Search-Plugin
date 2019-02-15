@@ -1,3 +1,4 @@
+let $cards;
 
 const PostTypeSearchDataManager = {
   searches: [],
@@ -176,9 +177,23 @@ const setDisabledJumpLinks = function ($) {
   }, this);
 };
 
+function filterCards(e) {
+  const category = `.${$(e.target).attr('data-slug')}`;
+  $cards
+    .show()
+    .not(category).hide();
+}
+
+const addEventHandlers = function ($) {
+  $('.ucf-resource-card-categories').on('click', filterCards);
+};
+
 if (typeof jQuery !== 'undefined') {
   jQuery(document).ready(($) => {
+    $cards = $('.ucf-resource-directory-items .card');
+
     resourceSearch($);
     setDisabledJumpLinks($);
+    addEventHandlers($);
   });
 }
