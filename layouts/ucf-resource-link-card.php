@@ -95,7 +95,8 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 					$linkedin_url = get_post_meta( $post->ID, 'ucf_resource_linkedin_url', TRUE );
 					$youtube_url = get_post_meta( $post->ID, 'ucf_resource_youtube_url', TRUE );
 
-					if( !empty( $terms = get_the_terms( $post, $taxonomy ) ) ) {
+					$terms = get_the_terms( $post, $taxonomy );
+					if( !empty( $terms ) ) {
 						$terms = implode(' ', array_map(function($x) { return $x->slug; }, $terms));
 					} else {
 						$terms = '';
