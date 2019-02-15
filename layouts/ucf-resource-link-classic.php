@@ -5,10 +5,11 @@
  * Use the `ucf_resource_link_display_classic_before` filter
  * hook to override or modify this output.
  *
- * @author Jim Barnes
- * @since 1.0.0
+ * @author RJ Bruneel
+ * @since 1.0.4
  *
- * @param $resource WP_Post object | The resource
+ * @param $content WP_Post object | The content
+ * @param $args Array | Array of arguments
  *
  * @return string | The html to be appended to output.
  **/
@@ -28,10 +29,11 @@ add_filter( 'ucf_resource_link_display_classic_before', 'ucf_resource_link_displ
  * Use the `ucf_resource_link_display_classic` filter
  * hook to override or modify this output.
  *
- * @author Jim Barnes
- * @since 1.0.0
+ * @author RJ Bruneel
+ * @since 1.0.4
  *
- * @param $resource WP_Post object | The resource
+ * @param $content WP_Post object | The content
+ * @param $args Array | Array of arguments
  *
  * @return string | The html to be appended to output.
  **/
@@ -282,7 +284,8 @@ add_filter( 'ucf_resource_link_display_classic', 'ucf_resource_link_display_clas
  * @author RJ Bruneel
  * @since 1.0.4
  *
- * @param $resource WP_Post object | The resource
+ * @param $content WP_Post object | The content
+ * @param $args Array | Array of arguments
  *
  * @return string | The html to be appended to output.
  **/

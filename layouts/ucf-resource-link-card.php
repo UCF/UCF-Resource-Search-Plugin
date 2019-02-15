@@ -1,5 +1,18 @@
 <?php
 
+/**
+ * Outputs the content of the resource.
+ * Use the `ucf_resource_link_display_card_before` filter
+ * hook to override or modify this output.
+ *
+ * @author RJ Bruneel
+ * @since 1.0.4
+ *
+ * @param $content WP_Post object | The content
+ * @param $args Array | Array of arguments
+ *
+ * @return string | The html to prepend to the output.
+ **/
 if ( ! function_exists( 'ucf_resource_link_display_card_before' ) ) {
 	function ucf_resource_link_display_card_before( $content, $args ) {
 		ob_start();
@@ -11,6 +24,19 @@ if ( ! function_exists( 'ucf_resource_link_display_card_before' ) ) {
 	add_filter( 'ucf_resource_link_display_card_before', 'ucf_resource_link_display_card_before', 10, 2 );
 }
 
+/**
+ * Outputs the content of the resource.
+ * Use the `ucf_resource_link_display_card` filter
+ * hook to override or modify this output.
+ *
+ * @author RJ Bruneel
+ * @since 1.0.4
+ *
+ * @param $content WP_Post object | The content
+ * @param $args Array | Array of arguments
+ *
+ * @return string | The html to be added to output.
+ **/
 if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 
 	function ucf_resource_link_display_card( $content, $args ) {
@@ -134,6 +160,19 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 	add_filter( 'ucf_resource_link_display_card', 'ucf_resource_link_display_card', 10, 2 );
 }
 
+/**
+ * Outputs the content of the resource.
+ * Use the `ucf_resource_link_display_card_after` filter
+ * hook to override or modify this output.
+ *
+ * @author RJ Bruneel
+ * @since 1.0.4
+ *
+ * @param $content WP_Post object | The content
+ * @param $args Array | Array of arguments
+ *
+ * @return string | The html to be appended to output.
+ **/
 if ( ! function_exists( 'ucf_resource_link_display_card_after' ) ) {
 	function ucf_resource_link_display_card_after( $content, $args ) {
 		ob_start();
