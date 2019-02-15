@@ -234,7 +234,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 				'label'                 => __( $labels['singular'], 'ucf_resource_link' ),
 				'description'           => __( $labels['plural'], 'ucf_resource_link' ),
 				'labels'                => self::labels( $labels['singular'], $labels['plural'], $labels['post_type'] ),
-				'supports'              => array( 'title', 'revisions', ),
+				'supports'              => array( 'title', 'revisions'),
 				'taxonomies'            => self::taxonomies(),
 				'hierarchical'          => false,
 				'public'                => true,
@@ -255,7 +255,8 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 		}
 		public static function taxonomies() {
 			$retval = array(
-				'resource_link_types'
+				'resource_link_types',
+				'category'
 			);
 			$retval = apply_filters( 'resource_link_taxonomies', $retval );
 			foreach( $retval as $taxonomy ) {

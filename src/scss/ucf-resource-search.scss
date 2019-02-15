@@ -113,3 +113,21 @@ $screen-lg-min: 1200px;
     }
   }
 }
+
+.ucf-resource-social-icons {
+
+  .ucf-resource-social-link {
+    border-radius: 50%;
+    display: inline-block;
+    height: 25px;
+    text-align: center;
+    padding-top: 1px;
+    width: 25px;
+
+    span {
+      text-align: center;
+      vertical-align: text-top;
+      width: 25px;
+    }
+  }
+}
