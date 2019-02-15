@@ -21,7 +21,6 @@ if ( ! class_exists( 'UCF_Resource_Search_Shortcode' ) ) {
 				'order'                   => 'ASC',
 				'show_sorting'            => true,
 				'default_sorting'         => 'term',
-				'show_sorting'            => true,
 				'show_uncategorized'      => false,
 				'uncategorized_term_name' => 'Uncategorized',
 				'layout'                  => 'classic',
