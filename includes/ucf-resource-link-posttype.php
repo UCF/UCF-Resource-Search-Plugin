@@ -145,49 +145,56 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 		 * @param $post_id WP_POST post id
 		 **/
 		public static function save_metabox( $post_id ) {
+
 			$post_type = get_post_type( $post_id );
 			// If this isn't a resource link, return.
 			if ( 'ucf_resource_link' !== $post_type ) return;
+
 			if ( isset( $_POST['ucf_resource_link_url'] ) ) {
-				// Ensure field is valid.
 				$url = sanitize_text_field( $_POST['ucf_resource_link_url'] );
-				if ( $url ) {
+				if ( isset( $url ) ) {
 					update_post_meta( $post_id, 'ucf_resource_link_url', $url );
 				}
 			}
+
 			if ( isset( $_POST['ucf_resource_facebook_url'] ) ) {
-				// Ensure field is valid.
 				$url = sanitize_text_field( $_POST['ucf_resource_facebook_url'] );
-				if ( $url ) {
+				if ( isset( $url ) ) {
 					update_post_meta( $post_id, 'ucf_resource_facebook_url', $url );
 				}
 			}
+
 			if ( isset( $_POST['ucf_resource_twitter_url'] ) ) {
-				// Ensure field is valid.
 				$url = sanitize_text_field( $_POST['ucf_resource_twitter_url'] );
-				if ( $url ) {
+				if ( isset( $url ) ) {
 					update_post_meta( $post_id, 'ucf_resource_twitter_url', $url );
 				}
 			}
 			if ( isset( $_POST['ucf_resource_instagram_url'] ) ) {
-				// Ensure field is valid.
 				$url = sanitize_text_field( $_POST['ucf_resource_instagram_url'] );
-				if ( $url ) {
+				if ( isset( $url ) ) {
 					update_post_meta( $post_id, 'ucf_resource_instagram_url', $url );
 				}
 			}
+
 			if ( isset( $_POST['ucf_resource_linkedin_url'] ) ) {
-				// Ensure field is valid.
 				$url = sanitize_text_field( $_POST['ucf_resource_linkedin_url'] );
-				if ( $url ) {
+				if ( isset( $url ) ) {
 					update_post_meta( $post_id, 'ucf_resource_linkedin_url', $url );
 				}
 			}
+
 			if ( isset( $_POST['ucf_resource_youtube_url'] ) ) {
-				// Ensure field is valid.
 				$url = sanitize_text_field( $_POST['ucf_resource_youtube_url'] );
-				if ( $url ) {
+				if ( isset( $url ) ) {
 					update_post_meta( $post_id, 'ucf_resource_youtube_url', $url );
+				}
+			}
+
+			if ( isset( $_POST['ucf_resource_youtube_url'] ) ) {
+				$admins = $_POST['ucf_resource_link_admins'];
+				if ( isset( $admins ) ) {
+					update_post_meta( $post_id, 'ucf_resource_link_admins', $admins );
 				}
 			}
 		}
