@@ -15,23 +15,32 @@ Provides a custom post type, shortcode, functions, and default styles for displa
 The resource search and links are added to pages using a ucf-resource-search shortcode.
 
 The ucf-resource-search shortcode has several options:
-* post_type_name - post, page, etc
-* taxonomy - category
-* meta_key
-* meta_value
-* show_empty_sections - true|false
-* non_alpha_section_name - Other
+
+Classic Layout
 * column_width - col-md-4 col-sm-4
 * column_count - 3
+* default_sorting - term
+* layout - classic or card
+* meta_key
+* meta_value
+* non_alpha_section_name - Other
 * order_by - title
 * order - ASC, DESC
+* post_type_name - post, page, etc
+* show_empty_sections - true|false
 * show_sorting - true|false
-* default_sorting - term
 * show_sorting - true|false
 * show_uncategorized - true|false
 * uncategorized_term_name - Uncategorized
+* taxonomy - category
+
+Card Layout
 * layout - classic or card
-* resource_type_filter - filter results by resource_link_type
+* order_by - title
+* order - ASC, DESC
+* post_type_name - post, page, etc
+* resource_link_type_filter - filter results by resource_link_type
+* taxonomy - category
 
 == Installation ==
 

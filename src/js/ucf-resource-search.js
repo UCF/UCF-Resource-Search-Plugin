@@ -187,7 +187,7 @@ function scrollToElement($element) {
 function filterCards(e) {
   e.preventDefault();
   let hash = window.location.hash;
-  if (hash) {
+  if (hash && hash !== '#top') {
     if (hash === '#all') {
       $resourceLinkCards.show();
     } else {

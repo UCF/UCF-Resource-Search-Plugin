@@ -42,12 +42,12 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 	function ucf_resource_link_display_card( $content, $args ) {
 		$tax_query = null;
 
-		if( !empty( $args['resource_link_type_filter'] ) ) {
+		if( !empty( $args['taxonomy'] ) && !empty( $args['resource_link_type_filter'] ) ) {
 			$tax_query = array(
 				array(
-					'taxonomy' => 'resource_link_types',
-					'field' => 'slug',
-					'terms' => $args['resource_link_type_filter']
+					'taxonomy' => $args['taxonomy'],
+					'field'    => 'slug',
+					'terms'    => $args['resource_link_type_filter']
 				)
 			);
 		}
@@ -76,7 +76,7 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 
 					if ( $terms && !is_wp_error( $terms ) ) :
 					?>
-						<h3 class="h5">Filter Directory</h3>
+						<h2 class="h5 heading-sans-serif text-uppercase mb-3">Filter Directory</h2>
 						<ul class="list-unstyled">
 							<li><a href="#all">Show All</a></li>
 							<?php foreach ( $terms as $term ) { ?>
