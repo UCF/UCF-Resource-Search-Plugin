@@ -77,7 +77,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 							<label class="block" for="ucf_resource_link_url"><strong>Website URL</strong></label>
 						</th>
 						<td>
-							<input type="text" id="ucf_resource_link_url" name="ucf_resource_link_url" class="regular-text" <?php echo ( ! empty( $url ) ) ? 'value="' . $url . '"' : ''; ?>>
+							<input type="text" id="ucf_resource_link_url" name="ucf_resource_link_url" class="regular-text" value="<?php echo $url; ?>">
 						</td>
 					</tr>
 					<tr>
@@ -85,7 +85,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 							<label class="block" for="ucf_resource_facebook_url"><strong>Facebook URL</strong></label>
 						</th>
 						<td>
-							<input type="text" id="ucf_resource_facebook_url" name="ucf_resource_facebook_url" class="regular-text" <?php echo ( ! empty( $facebook ) ) ? 'value="' . $facebook . '"' : ''; ?>>
+							<input type="text" id="ucf_resource_facebook_url" name="ucf_resource_facebook_url" class="regular-text" value="<?php echo $facebook; ?>">
 							<p class="description">The resource Facebook page URL. https://www.facebook.com/ResourceName/</p>
 						</td>
 					</tr>
@@ -94,7 +94,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 							<label class="block" for="ucf_resource_twitter_url"><strong>Twitter URL</strong></label>
 						</th>
 						<td>
-							<input type="text" id="ucf_resource_twitter_url" name="ucf_resource_twitter_url" class="regular-text" <?php echo ( ! empty( $twitter ) ) ? 'value="' . $twitter . '"' : ''; ?>>
+							<input type="text" id="ucf_resource_twitter_url" name="ucf_resource_twitter_url" class="regular-text" value="<?php echo $twitter; ?>">
 							<p class="description">The resource Twitter page URL. https://www.twitter.com/ResourceName/</p>
 						</td>
 					</tr>
@@ -103,7 +103,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 							<label class="block" for="ucf_resource_instagram_url"><strong>Instagram URL</strong></label>
 						</th>
 						<td>
-							<input type="text" id="ucf_resource_instagram_url" name="ucf_resource_instagram_url" class="regular-text" <?php echo ( ! empty( $instagram ) ) ? 'value="' . $instagram . '"' : ''; ?>>
+							<input type="text" id="ucf_resource_instagram_url" name="ucf_resource_instagram_url" class="regular-text" value="<?php echo $instagram; ?>">
 							<p class="description">The resource Instagram page URL. https://www.instagram.com/ResourceName/</p>
 						</td>
 					</tr>
@@ -112,7 +112,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 							<label class="block" for="ucf_resource_linkedin_url"><strong>LinkedIn URL</strong></label>
 						</th>
 						<td>
-							<input type="text" id="ucf_resource_linkedin_url" name="ucf_resource_linkedin_url" class="regular-text" <?php echo ( ! empty( $linkedin ) ) ? 'value="' . $linkedin . '"' : ''; ?>>
+							<input type="text" id="ucf_resource_linkedin_url" name="ucf_resource_linkedin_url" class="regular-text" value="<?php echo $linkedin; ?>">
 							<p class="description">The resource LinkedIn page URL. https://www.linkedin.com/in/ResourceName/</p>
 						</td>
 					</tr>
@@ -121,7 +121,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 							<label class="block" for="ucf_resource_youtube_url"><strong>YouTube URL</strong></label>
 						</th>
 						<td>
-							<input type="text" id="ucf_resource_youtube_url" name="ucf_resource_youtube_url" class="regular-text" <?php echo ( ! empty( $youtube ) ) ? 'value="' . $youtube . '"' : ''; ?>>
+							<input type="text" id="ucf_resource_youtube_url" name="ucf_resource_youtube_url" class="regular-text" value="<?php echo $youtube; ?>">
 							<p class="description">The resource YouTube page URL. https://www.youtube.com/ResourceName</p>
 						</td>
 					</tr>
@@ -130,7 +130,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 							<label class="block" for="ucf_resource_link_admins"><strong>Web Administrators</strong></label>
 						</th>
 						<td>
-							<textarea id="ucf_resource_link_admins" name="ucf_resource_link_admins" class="regular-text"><?php echo ( ! empty( $admins ) ) ? $admins : ''; ?></textarea>
+							<textarea id="ucf_resource_link_admins" name="ucf_resource_link_admins" class="regular-text"><?php echo $admins; ?></textarea>
 							<p class="description">Add web administrator information here. Accepts HTML content.</p>
 						</td>
 					</tr>
@@ -191,7 +191,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 				}
 			}
 
-			if ( isset( $_POST['ucf_resource_youtube_url'] ) ) {
+			if ( isset( $_POST['ucf_resource_link_admins'] ) ) {
 				$admins = $_POST['ucf_resource_link_admins'];
 				if ( isset( $admins ) ) {
 					update_post_meta( $post_id, 'ucf_resource_link_admins', $admins );

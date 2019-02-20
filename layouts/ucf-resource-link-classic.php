@@ -8,13 +8,12 @@
  * @author RJ Bruneel
  * @since 1.0.4
  *
- * @param $content WP_Post object | The content
  * @param $args Array | Array of arguments
  *
  * @return string | The html to be appended to output.
  **/
 if ( ! function_exists( 'ucf_resource_link_display_classic_before' ) ) {
-	function ucf_resource_link_display_classic_before( $content, $args ) {
+	function ucf_resource_link_display_classic_before( $args ) {
 		ob_start();
 	?>
 		<article>
@@ -22,7 +21,7 @@ if ( ! function_exists( 'ucf_resource_link_display_classic_before' ) ) {
 		return ob_get_clean();
 	}
 }
-add_filter( 'ucf_resource_link_display_classic_before', 'ucf_resource_link_display_classic_before', 10, 2 );
+add_filter( 'ucf_resource_link_display_classic_before', 'ucf_resource_link_display_classic_before', 10, 1 );
 
 /**
  * Outputs the content of the resource.
@@ -32,13 +31,12 @@ add_filter( 'ucf_resource_link_display_classic_before', 'ucf_resource_link_displ
  * @author RJ Bruneel
  * @since 1.0.4
  *
- * @param $content WP_Post object | The content
  * @param $args Array | Array of arguments
  *
  * @return string | The html to be appended to output.
  **/
 if ( ! function_exists( 'ucf_resource_link_display_classic' ) ) {
-	function ucf_resource_link_display_classic( $content, $args ) {
+	function ucf_resource_link_display_classic( $args ) {
 
 		$labels = UCF_Resource_Link_PostType::get_labels();
 
@@ -162,14 +160,14 @@ if ( ! function_exists( 'ucf_resource_link_display_classic' ) ) {
 				</form>
 			</div>
 			<div class="resource-search-results"></div>
-			<?php if ( $args['show_sorting'] ) { ?>
+			<?php if ( $args['show_sorting'] ) : ?>
 			<div class="btn-group resource-search-sorting">
 				<button class="btn btn-default<?php if ( $args['default_sorting'] == 'term' ) echo ' active'; ?>">
 				</button>
 				<button class="btn btn-default<?php if ( $args['default_sorting'] == 'alpha' ) echo ' active'; ?>">
 				</button>
 			</div>
-			<?php } ?>
+			<?php endif; ?>
 
 			<div class="btn-toolbar jump-to-list" role="toolbar" aria-label="Jump To List">
 				<div class="btn-group" role="group">
@@ -270,11 +268,10 @@ if ( ! function_exists( 'ucf_resource_link_display_classic' ) ) {
 
 		</div><!-- .resource-search -->
 	<?php
-		$content = ob_get_clean();
-		return $script . $content;
+		return $script . ob_get_clean();
 	}
 }
-add_filter( 'ucf_resource_link_display_classic', 'ucf_resource_link_display_classic', 10, 2 );
+add_filter( 'ucf_resource_link_display_classic', 'ucf_resource_link_display_classic', 10, 1 );
 
 /**
  * Outputs the content of the resource.
@@ -284,13 +281,12 @@ add_filter( 'ucf_resource_link_display_classic', 'ucf_resource_link_display_clas
  * @author RJ Bruneel
  * @since 1.0.4
  *
- * @param $content WP_Post object | The content
  * @param $args Array | Array of arguments
  *
  * @return string | The html to be appended to output.
  **/
 if ( ! function_exists( 'ucf_resource_link_display_classic_after' ) ) {
-	function ucf_resource_link_display_classic_after( $content, $args ) {
+	function ucf_resource_link_display_classic_after( $args ) {
 		ob_start();
 	?>
 		</article>
@@ -298,6 +294,6 @@ if ( ! function_exists( 'ucf_resource_link_display_classic_after' ) ) {
 		return ob_get_clean();
 	}
 }
-add_filter( 'ucf_resource_link_display_classic_after', 'ucf_resource_link_display_classic_after', 10, 2 );
+add_filter( 'ucf_resource_link_display_classic_after', 'ucf_resource_link_display_classic_after', 10, 1 );
 
 ?>

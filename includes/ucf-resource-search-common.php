@@ -36,19 +36,16 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 				$args['default_sorting'] = $default['default_sorting'];
 			}
 
-			$before = ucf_resource_link_display_classic_before( '', $args );
 			if ( has_filter( 'ucf_resource_link_display_' . $args['layout'] . '_before' ) ) {
-				$before = apply_filters( 'ucf_resource_link_display_' . $args['layout'] . '_before', $before, $args );
+				$before = apply_filters( 'ucf_resource_link_display_' . $args['layout'] . '_before', $args );
 			}
 
-			$content = ucf_resource_link_display_classic( '', $args );
 			if ( has_filter( 'ucf_resource_link_display_' . $args['layout'] ) ) {
-				$content = apply_filters( 'ucf_resource_link_display_' . $args['layout'], $content, $args );
+				$content = apply_filters( 'ucf_resource_link_display_' . $args['layout'], $args );
 			}
 
-			$after = ucf_resource_link_display_classic_after( '', $args );
 			if ( has_filter( 'ucf_resource_link_display_' . $args['layout'] . '_after' ) ) {
-				$after = apply_filters( 'ucf_resource_link_display_' . $args['layout'] . '_after', $after, $args );
+				$after = apply_filters( 'ucf_resource_link_display_' . $args['layout'] . '_after', $args );
 			}
 
 			return $before . $content . $after;
