@@ -103,9 +103,9 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 					}
 	?>
 					<div class="card-wrapper col-md-6 col-lg-4 mb-4 <?php echo $terms; ?>">
-						<div class="card h-100">
+						<div class="card h-100 card-outline-primary">
 							<div class="card-block pb-0">
-								<a href="<?php echo get_post_meta( $post->ID, 'ucf_resource_link_url', TRUE ); ?>">
+								<a href="<?php echo get_post_meta( $post->ID, 'ucf_resource_link_url', TRUE ); ?>" class="text-secondary">
 									<h4 class="ucf-resource-link-title card-title text-center h6"><?php echo $post->post_title; ?></h4>
 								</a>
 							</div>
