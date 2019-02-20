@@ -57,7 +57,7 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 				'posts_per_page' => -1,
 				'post_type'      => $args['post_type_name'],
 				'orderby'        => $args['order_by'],
-				'sort_order'     => $args['order'],
+				'order'          => $args['order'],
 				'tax_query'      => $tax_query
 			)
 		);
