@@ -1,4 +1,5 @@
-let $resource_link_cards;
+let $resourceLinkCards;
+let $UcfResourceDirectoryItems;
 
 const PostTypeSearchDataManager = {
   searches: [],
@@ -177,15 +178,25 @@ const setDisabledJumpLinks = ($) => {
   }, this);
 };
 
-function filterCards() {
-  const hash = window.location.hash.replace('#', '');
+function scrollToElement($element) {
+  $([document.documentElement, document.body]).animate({
+    scrollTop: $element.offset().top - 20
+  }, 1000);
+}
+
+function filterCards(e) {
+  e.preventDefault();
+  let hash = window.location.hash;
   if (hash) {
-    $resource_link_cards
-      .show()
-      .not(`.${hash}`).hide();
-  } else {
-    $resource_link_cards
-      .show();
+    if (hash === '#all') {
+      $resourceLinkCards.show();
+    } else {
+      hash = hash.replace('#', '');
+      $resourceLinkCards
+        .show()
+        .not(`.${hash}`).hide();
+    }
+    scrollToElement($UcfResourceDirectoryItems);
   }
 }
 
@@ -195,7 +206,8 @@ const addEventHandlers = ($) => {
 
 if (typeof jQuery !== 'undefined') {
   jQuery(document).ready(($) => {
-    $resource_link_cards = $('.ucf-resource-directory-items .card-wrapper');
+    $UcfResourceDirectoryItems = $('.ucf-resource-directory-items');
+    $resourceLinkCards = $UcfResourceDirectoryItems.find('.card-wrapper');
 
     resourceSearch($);
     setDisabledJumpLinks($);

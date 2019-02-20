@@ -78,7 +78,7 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 					?>
 						<h3 class="h5">Filter Directory</h3>
 						<ul class="list-unstyled">
-							<li><a href="#">Show All</a></li>
+							<li><a href="#all">Show All</a></li>
 							<?php foreach ( $terms as $term ) { ?>
 								<li><a href="#<?php echo $term->slug; ?>"><?php echo $term->name; ?></a></li>
 							<?php } ?>
