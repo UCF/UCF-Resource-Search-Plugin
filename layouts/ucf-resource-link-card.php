@@ -78,9 +78,9 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 					?>
 						<h2 class="h5 heading-sans-serif text-uppercase mb-3">Filter Directory</h2>
 						<ul class="list-unstyled">
-							<li><a href="#all">Show All</a></li>
+							<li><a href="#filter-all">Show All</a></li>
 							<?php foreach ( $terms as $term ) { ?>
-								<li><a href="#<?php echo $term->slug; ?>"><?php echo $term->name; ?></a></li>
+								<li><a href="#filter-<?php echo $term->slug; ?>"><?php echo $term->name; ?></a></li>
 							<?php } ?>
 						</ul>
 					<?php endif;?>
@@ -97,7 +97,7 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 
 					$terms = get_the_terms( $post, $taxonomy );
 					if( !empty( $terms ) ) {
-						$terms = implode(' ', array_map(function($x) { return $x->slug; }, $terms));
+						$terms = implode(' ', array_map(function($x) { return "filter-" . $x->slug; }, $terms));
 					} else {
 						$terms = '';
 					}

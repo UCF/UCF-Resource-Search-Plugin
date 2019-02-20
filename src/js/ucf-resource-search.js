@@ -179,16 +179,18 @@ const setDisabledJumpLinks = ($) => {
 };
 
 function scrollToElement($element) {
-  $([document.documentElement, document.body]).animate({
-    scrollTop: $element.offset().top - 20
-  }, 1000);
+  if ($element.offset()) {
+    $([document.documentElement, document.body]).animate({
+      scrollTop: $element.offset().top - 20
+    }, 1000);
+  }
 }
 
 function filterCards(e) {
   e.preventDefault();
   let hash = window.location.hash;
-  if (hash && hash !== '#top') {
-    if (hash === '#all') {
+  if (hash && hash.indexOf('#filter-') !== -1) {
+    if (hash === '#filter-all') {
       $resourceLinkCards.show();
     } else {
       hash = hash.replace('#', '');
