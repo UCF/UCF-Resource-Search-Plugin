@@ -75,10 +75,10 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 					if ( $terms && !is_wp_error( $terms ) ) :
 					?>
 						<h2 class="h5 heading-sans-serif text-uppercase mb-3">Filter Directory</h2>
-						<ul class="list-unstyled">
-							<li><a href="#filter-all">Show All</a></li>
+						<ul class="list-unstyled ucf-resource-list-filter">
+							<li><a href="#filter-all" class="filter-all text-secondary">Show All</a></li>
 							<?php foreach ( $terms as $term ) { ?>
-								<li><a href="#filter-<?php echo $term->slug; ?>"><?php echo $term->name; ?></a></li>
+								<li><a href="#filter-<?php echo $term->slug; ?>" class="filter-<?php echo $term->slug; ?>"><?php echo $term->name; ?></a></li>
 							<?php } ?>
 						</ul>
 					<?php endif;?>
