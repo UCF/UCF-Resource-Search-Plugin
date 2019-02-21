@@ -8,12 +8,13 @@
  * @author RJ Bruneel
  * @since 1.0.4
  *
+ * @param $content string | The default output
  * @param $args Array | Array of arguments
  *
  * @return string | The html to be appended to output.
  **/
 if ( ! function_exists( 'ucf_resource_link_display_classic_before' ) ) {
-	function ucf_resource_link_display_classic_before( $args ) {
+	function ucf_resource_link_display_classic_before( $content, $args ) {
 		ob_start();
 	?>
 		<article>
@@ -21,7 +22,7 @@ if ( ! function_exists( 'ucf_resource_link_display_classic_before' ) ) {
 		return ob_get_clean();
 	}
 }
-add_filter( 'ucf_resource_link_display_classic_before', 'ucf_resource_link_display_classic_before', 10, 1 );
+add_filter( 'ucf_resource_link_display_classic_before', 'ucf_resource_link_display_classic_before', 10, 2 );
 
 /**
  * Outputs the content of the resource.
@@ -31,12 +32,13 @@ add_filter( 'ucf_resource_link_display_classic_before', 'ucf_resource_link_displ
  * @author RJ Bruneel
  * @since 1.0.4
  *
+ * @param $content string | The default output
  * @param $args Array | Array of arguments
  *
  * @return string | The html to be appended to output.
  **/
 if ( ! function_exists( 'ucf_resource_link_display_classic' ) ) {
-	function ucf_resource_link_display_classic( $args ) {
+	function ucf_resource_link_display_classic( $content, $args ) {
 
 		$labels = UCF_Resource_Link_PostType::get_labels();
 
@@ -271,7 +273,7 @@ if ( ! function_exists( 'ucf_resource_link_display_classic' ) ) {
 		return $script . ob_get_clean();
 	}
 }
-add_filter( 'ucf_resource_link_display_classic', 'ucf_resource_link_display_classic', 10, 1 );
+add_filter( 'ucf_resource_link_display_classic', 'ucf_resource_link_display_classic', 10, 2 );
 
 /**
  * Outputs the content of the resource.
@@ -281,12 +283,13 @@ add_filter( 'ucf_resource_link_display_classic', 'ucf_resource_link_display_clas
  * @author RJ Bruneel
  * @since 1.0.4
  *
+ * @param $content string | The default output
  * @param $args Array | Array of arguments
  *
  * @return string | The html to be appended to output.
  **/
 if ( ! function_exists( 'ucf_resource_link_display_classic_after' ) ) {
-	function ucf_resource_link_display_classic_after( $args ) {
+	function ucf_resource_link_display_classic_after( $content, $args ) {
 		ob_start();
 	?>
 		</article>
@@ -294,6 +297,6 @@ if ( ! function_exists( 'ucf_resource_link_display_classic_after' ) ) {
 		return ob_get_clean();
 	}
 }
-add_filter( 'ucf_resource_link_display_classic_after', 'ucf_resource_link_display_classic_after', 10, 1 );
+add_filter( 'ucf_resource_link_display_classic_after', 'ucf_resource_link_display_classic_after', 10, 2 );
 
 ?>

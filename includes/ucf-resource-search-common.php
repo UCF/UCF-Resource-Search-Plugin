@@ -37,15 +37,15 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 			}
 
 			if ( has_filter( 'ucf_resource_link_display_' . $args['layout'] . '_before' ) ) {
-				$before = apply_filters( 'ucf_resource_link_display_' . $args['layout'] . '_before', $args );
+				$before = apply_filters( 'ucf_resource_link_display_' . $args['layout'] . '_before', '', $args );
 			}
 
 			if ( has_filter( 'ucf_resource_link_display_' . $args['layout'] ) ) {
-				$content = apply_filters( 'ucf_resource_link_display_' . $args['layout'], $args );
+				$content = apply_filters( 'ucf_resource_link_display_' . $args['layout'], '', $args );
 			}
 
 			if ( has_filter( 'ucf_resource_link_display_' . $args['layout'] . '_after' ) ) {
-				$after = apply_filters( 'ucf_resource_link_display_' . $args['layout'] . '_after', $args );
+				$after = apply_filters( 'ucf_resource_link_display_' . $args['layout'] . '_after', '' , $args );
 			}
 
 			return $before . $content . $after;
