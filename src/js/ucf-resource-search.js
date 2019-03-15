@@ -188,7 +188,7 @@ function scrollToElement($element) {
 }
 
 function setSelected($element) {
-  const toggleClass = 'text-secondary';
+  const toggleClass = 'active text-secondary';
   $ucfResourceListFilter.find('a').removeClass(toggleClass);
   $element.toggleClass(toggleClass);
 }

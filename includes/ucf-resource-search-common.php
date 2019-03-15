@@ -16,6 +16,7 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 			wp_enqueue_script( 'ucf-resource_search_js', plugins_url( 'static/js/ucf-resource-search.min.js', UCF_Resource_Search__PLUGIN_FILE ), null, null, true );
 		}
 
+
 		/**
 		 * Displays the output of the resource search content.
 		 *
@@ -49,6 +50,39 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 			}
 
 			return $before . $content . $after;
+		}
+
+
+		/**
+		 * Displays the output of the resource search content.
+		 *
+		 * @author R.J. Bruneel
+		 * @since 1.0.4
+		 *
+		 * @param $nav_class string | CSS class to display the filter nav horizontally, vertically or other Athena nav classes.
+		 *
+		 * @return string | The filter nav HTML.
+		 **/
+		public static function display_filter_nav( $nav_class ) {
+			$terms = get_terms( array(
+				'taxonomy'   => 'resource_link_category',
+				'hide_empty' => true,
+			) );
+
+			if ( $terms && !is_wp_error( $terms ) ) :
+				ob_start();
+		?>
+				<ul class="ucf-resource-list-filter nav <?php echo $nav_class; ?> mb-4">
+					<li class="nav-item"><a href="#filter-all" class="filter-all nav-link active text-secondary">Show All</a></li>
+					<?php foreach ( $terms as $term ) { ?>
+						<li class="nav-item"><a href="#filter-<?php echo $term->slug; ?>" class="filter-<?php echo $term->slug; ?> nav-link"><?php echo $term->name; ?></a></li>
+					<?php } ?>
+				</ul>
+		<?php
+				return ob_get_clean();
+			else:
+				return '';
+			endif;
 		}
 
 	}
