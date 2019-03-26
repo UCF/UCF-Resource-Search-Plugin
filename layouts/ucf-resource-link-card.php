@@ -16,12 +16,13 @@
 if ( ! function_exists( 'ucf_resource_link_display_card_before' ) ) {
 	function ucf_resource_link_display_card_before( $content, $args ) {
 		ob_start();
+		$label = '<li class="nav-item text-uppercase pt-1 font-weight-bold">Filter By</li>';
 	?>
 		<div class="ucf-resource-list-card-wrapper">
 		<?php if( $args['nav_position'] === "top" ): ?>
 			<div class="row">
 				<div class="col-12">
-					<?php echo UCF_Resource_Search_Common::display_filter_nav( 'justify-content-md-center text-center mb-4' ); ?>
+					<?php echo UCF_Resource_Search_Common::display_filter_nav( 'd-md-inline-flex text-center text-md-left list-unstyled', $label ); ?>
 				</div>
 			</div>
 	<?php endif; ?>
@@ -81,7 +82,7 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 			?>
 				<div class="ucf-resource-card-categories col-md-3 mb-4 text-center text-md-left">
 					<h2 class="h5 heading-sans-serif text-uppercase mb-3">Filter By</h2>
-					<?php echo UCF_Resource_Search_Common::display_filter_nav( 'flex-column' ); ?>
+					<?php echo UCF_Resource_Search_Common::display_filter_nav( 'nav flex-column', '' ); ?>
 				</div>
 				<div class="col-md-9">
 			<?php else: // Top Nav ?>

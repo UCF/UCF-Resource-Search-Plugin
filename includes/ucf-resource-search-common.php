@@ -63,7 +63,7 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 		 *
 		 * @return string | The filter nav HTML.
 		 **/
-		public static function display_filter_nav( $nav_class ) {
+		public static function display_filter_nav( $nav_class, $label ) {
 			$terms = get_terms( array(
 				'taxonomy'   => 'resource_link_category',
 				'hide_empty' => true,
@@ -72,10 +72,11 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 			if ( $terms && !is_wp_error( $terms ) ) :
 				ob_start();
 		?>
-				<ul class="ucf-resource-list-filter nav <?php echo $nav_class; ?> mb-4">
-					<li class="nav-item"><a href="#filter-all" class="filter-all nav-link active text-secondary">Show All</a></li>
+				<ul class="ucf-resource-list-filter <?php echo $nav_class; ?> mb-4">
+					<?php echo $label; ?>
+					<li class="nav-item"><a href="#filter-all" class="filter-all pb-1 pb-md-2 nav-link active text-secondary">Show All</a></li>
 					<?php foreach ( $terms as $term ) { ?>
-						<li class="nav-item"><a href="#filter-<?php echo $term->slug; ?>" class="filter-<?php echo $term->slug; ?> nav-link"><?php echo $term->name; ?></a></li>
+						<li class="nav-item"><a href="#filter-<?php echo $term->slug; ?>" class="filter-<?php echo $term->slug; ?> nav-link pb-1 pb-md-2"><?php echo $term->name; ?></a></li>
 					<?php } ?>
 				</ul>
 		<?php
