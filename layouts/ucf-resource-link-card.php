@@ -87,7 +87,7 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 				<div class="col-md-9">
 			<?php else: // Top Nav ?>
 				<div class="col-md-12">
-			<?php endif;?>
+			<?php endif; ?>
 					<div class="ucf-resource-directory-items row">
 	<?php
 				foreach ( $posts as $key => $post ) :
