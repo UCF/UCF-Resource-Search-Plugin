@@ -54,12 +54,13 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 
 
 		/**
-		 * Displays the output of the resource search content.
+		 * Displays the output of the filter nav.
 		 *
 		 * @author R.J. Bruneel
 		 * @since 1.0.4
 		 *
 		 * @param $nav_class string | CSS class to display the filter nav horizontally, vertically or other Athena nav classes.
+		 * @param $label string | Content to display as the label for the filters.
 		 *
 		 * @return string | The filter nav HTML.
 		 **/
