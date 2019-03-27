@@ -77,7 +77,7 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 	?>
 			<div class="row">
 			<?php
-				if( $args['nav_position'] === "left" ) : // Left Nav
+				if ( $args['nav_position'] === "left" ) : // Left Nav
 					$column_class = 'col-md-6 col-lg-4';
 			?>
 				<div class="ucf-resource-card-categories col-md-3 mb-4 text-center text-md-left">
