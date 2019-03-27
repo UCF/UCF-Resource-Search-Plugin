@@ -1,6 +1,7 @@
 let $resourceLinkCards;
 let $UcfResourceDirectoryItems;
 let $ucfResourceListFilter;
+let isResourceFilterLeft = false;
 
 const PostTypeSearchDataManager = {
   searches: [],
@@ -188,7 +189,7 @@ function scrollToElement($element) {
 }
 
 function setSelected($element) {
-  const toggleClass = 'text-secondary';
+  const toggleClass = 'active text-secondary';
   $ucfResourceListFilter.find('a').removeClass(toggleClass);
   $element.toggleClass(toggleClass);
 }
@@ -206,7 +207,9 @@ function filterCards(e) {
         .show()
         .not(`.${hash}`).hide();
     }
-    scrollToElement($UcfResourceDirectoryItems);
+    if (isResourceFilterLeft) {
+      scrollToElement($UcfResourceDirectoryItems);
+    }
     setSelected($(`.${hash}`));
   }
 }
@@ -220,6 +223,7 @@ if (typeof jQuery !== 'undefined') {
     $UcfResourceDirectoryItems = $('.ucf-resource-directory-items');
     $resourceLinkCards = $UcfResourceDirectoryItems.find('.card-wrapper');
     $ucfResourceListFilter = $('.ucf-resource-list-filter');
+    isResourceFilterLeft = $('.ucf-resource-card-categories').length;
 
     resourceSearch($);
     setDisabledJumpLinks($);

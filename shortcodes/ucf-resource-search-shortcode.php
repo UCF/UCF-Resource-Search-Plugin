@@ -24,6 +24,7 @@ if ( ! class_exists( 'UCF_Resource_Search_Shortcode' ) ) {
 				'show_uncategorized'      => false,
 				'uncategorized_term_name' => 'Uncategorized',
 				'layout'                  => 'classic',
+				'nav_position'            => 'top',
 				'resource_type_filter'    => ''
 			);
 

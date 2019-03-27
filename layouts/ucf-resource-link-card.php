@@ -16,8 +16,16 @@
 if ( ! function_exists( 'ucf_resource_link_display_card_before' ) ) {
 	function ucf_resource_link_display_card_before( $content, $args ) {
 		ob_start();
+		$label = '<li class="nav-item text-uppercase pt-1 font-weight-bold">Filter By</li>';
 	?>
 		<div class="ucf-resource-list-card-wrapper">
+		<?php if ( $args['nav_position'] === "top" ) : ?>
+			<div class="row">
+				<div class="col-12">
+					<?php echo UCF_Resource_Search_Common::display_filter_nav( 'd-md-inline-flex text-center text-md-left list-unstyled', $label ); ?>
+				</div>
+			</div>
+	<?php endif; ?>
 	<?php
 		return ob_get_clean();
 	}
@@ -64,28 +72,22 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 
 		ob_start();
 		if ( $posts ):
+			// Top Nav
+			$column_class = 'col-md-4 col-lg-3';
 	?>
 			<div class="row">
-				<div class="ucf-resource-card-categories col-md-3 mb-4">
-				<?php
-					$taxonomy = 'resource_link_category';
-					$terms = get_terms( array(
-						'taxonomy'   => $taxonomy,
-						'hide_empty' => true,
-					) );
-
-					if ( $terms && !is_wp_error( $terms ) ) :
-					?>
-						<h2 class="h5 heading-sans-serif text-uppercase mb-3">Filter Directory</h2>
-						<ul class="list-unstyled ucf-resource-list-filter">
-							<li><a href="#filter-all" class="filter-all text-secondary">Show All</a></li>
-							<?php foreach ( $terms as $term ) { ?>
-								<li><a href="#filter-<?php echo $term->slug; ?>" class="filter-<?php echo $term->slug; ?>"><?php echo $term->name; ?></a></li>
-							<?php } ?>
-						</ul>
-					<?php endif;?>
+			<?php
+				if ( $args['nav_position'] === "left" ) : // Left Nav
+					$column_class = 'col-md-6 col-lg-4';
+			?>
+				<div class="ucf-resource-card-categories col-md-3 mb-4 text-center text-md-left">
+					<h2 class="h5 heading-sans-serif text-uppercase mb-3">Filter By</h2>
+					<?php echo UCF_Resource_Search_Common::display_filter_nav( 'nav flex-column', '' ); ?>
 				</div>
 				<div class="col-md-9">
+			<?php else: // Top Nav ?>
+				<div class="col-md-12">
+			<?php endif; ?>
 					<div class="ucf-resource-directory-items row">
 	<?php
 				foreach ( $posts as $key => $post ) :
@@ -95,14 +97,14 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 					$linkedin_url = get_post_meta( $post->ID, 'ucf_resource_linkedin_url', TRUE );
 					$youtube_url = get_post_meta( $post->ID, 'ucf_resource_youtube_url', TRUE );
 
-					$terms = get_the_terms( $post, $taxonomy );
+					$terms = get_the_terms( $post, 'resource_link_category' );
 					if( !empty( $terms ) ) {
 						$terms = implode(' ', array_map(function($x) { return "filter-" . $x->slug; }, $terms));
 					} else {
 						$terms = '';
 					}
 	?>
-					<div class="card-wrapper col-md-6 col-lg-4 mb-4 <?php echo $terms; ?>">
+					<div class="card-wrapper <?php echo $column_class; ?> mb-4 <?php echo $terms; ?>">
 						<div class="card h-100 card-outline-primary">
 							<div class="card-block pb-0">
 								<a href="<?php echo get_post_meta( $post->ID, 'ucf_resource_link_url', TRUE ); ?>" class="text-secondary">
