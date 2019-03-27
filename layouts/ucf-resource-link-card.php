@@ -19,7 +19,7 @@ if ( ! function_exists( 'ucf_resource_link_display_card_before' ) ) {
 		$label = '<li class="nav-item text-uppercase pt-1 font-weight-bold">Filter By</li>';
 	?>
 		<div class="ucf-resource-list-card-wrapper">
-		<?php if( $args['nav_position'] === "top" ): ?>
+		<?php if ( $args['nav_position'] === "top" ) : ?>
 			<div class="row">
 				<div class="col-12">
 					<?php echo UCF_Resource_Search_Common::display_filter_nav( 'd-md-inline-flex text-center text-md-left list-unstyled', $label ); ?>
