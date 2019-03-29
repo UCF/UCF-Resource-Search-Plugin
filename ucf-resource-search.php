@@ -2,7 +2,7 @@
 /*
 Plugin Name: UCF Resource Search
 Description: Provides a custom post type, shortcode, functions, and default styles for displaying a resource search input and list of resources.
-Version: 1.0.3
+Version: 1.0.4
 Author: UCF Web Communications
 License: GPL3
 */
