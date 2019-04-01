@@ -49,15 +49,19 @@ if ( ! class_exists( 'UCF_Resource_Search_Config' ) ) {
 				<table class="form-table">
 					<tr>
 						<th scope="row">Include CSS</th>
-						<td><input type="checkbox" name="ucf_resource_search_include_css" <?php echo ( $ucf_resource_search_include_css === 'on' ) ? 'checked' : ''; ?>>
-							Include Default CSS
-						</input></td>
+						<td>
+							<input type="checkbox" name="ucf_resource_search_include_css" <?php echo ( $ucf_resource_search_include_css === 'on' ) ? 'checked' : ''; ?>>
+								Include Default CSS
+							<p class="description">If checked the default CSS included with this plugin will be added to the page.</p>
+						</td>
 					</tr>
 					<tr>
 						<th scope="row">Include Social Fields</th>
-						<td><input type="checkbox" name="ucf_resource_search_include_social" <?php echo ( $ucf_resource_search_include_social === 'on' ) ? 'checked' : ''; ?>>
-							Include Social Fields
-						</input></td>
+						<td>
+							<input type="checkbox" name="ucf_resource_search_include_social" <?php echo ( $ucf_resource_search_include_social === 'on' ) ? 'checked' : ''; ?>>
+								Include Social Fields
+							<p class="description">If checked the social media fields will be displayed in the resource link CPT admin.</p>
+						</td>
 					</tr>
 				<?php submit_button(); ?>
 			</form>
