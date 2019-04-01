@@ -33,8 +33,8 @@ if ( ! class_exists( 'UCF_Resource_Search_Config' ) ) {
 		}
 
 		public static function register_settings() {
-			register_setting( 'ucf-resource-search-group', self::$option_prefix . 'include_css' );
-			register_setting( 'ucf-resource-search-group', self::$option_prefix . 'include_social' );
+			register_setting( 'ucf-resource-search-group', self::$option_prefix . 'include_css', array( 'default' => 'on' ) );
+			register_setting( 'ucf-resource-search-group', self::$option_prefix . 'include_social', array( 'default' => 'on' ) );
 		}
 
 		public static function add_settings_page() {
