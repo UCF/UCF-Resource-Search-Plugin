@@ -3,7 +3,7 @@ Contributors: ucfwebcom
 Tags: ucf, resource
 Requires at least: 4.7.3
 Tested up to: 4.9.6
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/copyleft/gpl-3.0.html
 
@@ -59,6 +59,9 @@ Card Layout
 * FontAwesome (if using the card layout)
 
 == Changelog ==
+
+= 1.0.5 =
+* Added setting to exclude the social media fields from the admin.
 
 = 1.0.4 =
 * Added card layout option for ucf-resource-search shortcode
