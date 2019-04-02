@@ -53,6 +53,9 @@ Card Layout
 
 ## Changelog ##
 
+### 1.0.5 ###
+* Added setting to exclude the social media fields from the admin.
+
 ### 1.0.4 ###
 * Added card layout option for ucf-resource-search shortcode
 * Added fields for social links

@@ -64,11 +64,14 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 			wp_nonce_field( 'ucf_resource_link_nonce_save', 'ucf_resource_link_nonce' );
 			$url = get_post_meta( $post->ID, 'ucf_resource_link_url', TRUE );
 			$admins = get_post_meta( $post->ID, 'ucf_resource_link_admins', TRUE );
-			$facebook = get_post_meta( $post->ID, 'ucf_resource_facebook_url', TRUE );
-			$twitter = get_post_meta( $post->ID, 'ucf_resource_twitter_url', TRUE );
-			$instagram = get_post_meta( $post->ID, 'ucf_resource_instagram_url', TRUE );
-			$linkedin = get_post_meta( $post->ID, 'ucf_resource_linkedin_url', TRUE );
-			$youtube = get_post_meta( $post->ID, 'ucf_resource_youtube_url', TRUE );
+
+			if ( get_option( 'ucf_resource_search_include_social' ) ) :
+				$facebook = get_post_meta( $post->ID, 'ucf_resource_facebook_url', TRUE );
+				$twitter = get_post_meta( $post->ID, 'ucf_resource_twitter_url', TRUE );
+				$instagram = get_post_meta( $post->ID, 'ucf_resource_instagram_url', TRUE );
+				$linkedin = get_post_meta( $post->ID, 'ucf_resource_linkedin_url', TRUE );
+				$youtube = get_post_meta( $post->ID, 'ucf_resource_youtube_url', TRUE );
+			endif;
 ?>
 			<table class="form-table">
 				<tbody>
@@ -80,6 +83,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 							<input type="text" id="ucf_resource_link_url" name="ucf_resource_link_url" class="regular-text" value="<?php echo $url; ?>">
 						</td>
 					</tr>
+				<?php if ( get_option( 'ucf_resource_search_include_social' ) ) : ?>
 					<tr>
 						<th>
 							<label class="block" for="ucf_resource_facebook_url"><strong>Facebook URL</strong></label>
@@ -125,6 +129,7 @@ if ( ! class_exists( 'UCF_Resource_Link_PostType' ) ) {
 							<p class="description">The resource YouTube page URL. https://www.youtube.com/ResourceName</p>
 						</td>
 					</tr>
+				<?php endif; // Include Social Fields ?>
 					<tr>
 						<th>
 							<label class="block" for="ucf_resource_link_admins"><strong>Web Administrators</strong></label>
