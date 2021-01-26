@@ -8,12 +8,12 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 
 		public static function enqueue_styles() {
 			if ( get_option( 'ucf_resource_search_include_css' ) ) {
-				wp_enqueue_style( 'ucf_resource_search_css', plugins_url( 'static/css/ucf-resource-search.min.css', UCF_Resource_Search__PLUGIN_FILE ), false, false, 'all' );
+				wp_enqueue_style( 'ucf_resource_search_css', UCF_RESOURCE_SEARCH__STYLES_URL . '/ucf-resource-search.min.css', false, false, 'all' );
 			}
 		}
 
 		public static function enqueue_scripts() {
-			wp_enqueue_script( 'ucf-resource_search_js', plugins_url( 'static/js/ucf-resource-search.min.js', UCF_Resource_Search__PLUGIN_FILE ), null, null, true );
+			wp_enqueue_script( 'ucf-resource_search_js', UCF_RESOURCE_SEARCH__SCRIPT_URL . '/ucf-resource-search.min.js', null, null, true );
 		}
 
 
