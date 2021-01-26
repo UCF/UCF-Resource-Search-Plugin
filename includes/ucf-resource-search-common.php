@@ -7,7 +7,7 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 	class UCF_Resource_Search_Common {
 
 		public static function register_assets() {
-			$plugin_data = get_plugin_data( UCF_DEGREE_SEARCH__PLUGIN_FILE, false, false );
+			$plugin_data = get_plugin_data( UCF_RESOURCE_SEARCH__PLUGIN_FILE, false, false );
 			$version     = $plugin_data['Version'];
 
 			if ( filter_var( get_option( 'ucf_resource_search_include_css' ), FILTER_VALIDATE_BOOLEAN ) ) {
