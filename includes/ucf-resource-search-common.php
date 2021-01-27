@@ -7,7 +7,7 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 	class UCF_Resource_Search_Common {
 
 		public static function enqueue_styles() {
-			if ( get_option( 'ucf_resource_search_include_css' ) ) {
+			if ( filter_var( get_option( 'ucf_resource_search_include_css', true ), FILTER_VALIDATE_BOOLEAN ) ) {
 				wp_enqueue_style( 'ucf_resource_search_css', UCF_RESOURCE_SEARCH__STYLES_URL . '/ucf-resource-search.min.css', false, false, 'all' );
 			}
 		}
