@@ -172,7 +172,7 @@ const resourceSearch = ($) => {
 };
 
 const setDisabledJumpLinks = ($) => {
-  $links = $('.jump-to-list').find('a');
+  const $links = $('.jump-to-list').find('a');
   $.each($links, (index, element) => {
     if ($($(element).attr('href')).length === 0) {
       $(element).addClass('disabled');

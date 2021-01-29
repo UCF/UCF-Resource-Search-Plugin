@@ -53,7 +53,7 @@ Card Layout
 
 ## Changelog ##
 
-### 1.0.6###
+### 1.0.6 ###
 * Added late JS enqueuing
 * Added plugin version cache-busting to enqueued assets
 * Updated constants for consistency with other plugins
