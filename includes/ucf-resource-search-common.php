@@ -6,14 +6,24 @@
 if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 	class UCF_Resource_Search_Common {
 
+		public static function register_assets() {
+			$plugin_data = get_plugin_data( UCF_RESOURCE_SEARCH__PLUGIN_FILE, false, false );
+			$version     = $plugin_data['Version'];
+
+			if ( filter_var( get_option( 'ucf_resource_search_include_css' ), FILTER_VALIDATE_BOOLEAN ) ) {
+				wp_register_style( 'ucf_resource_search_css', UCF_RESOURCE_SEARCH__STYLES_URL . '/ucf-resource-search.min.css', null, $version, 'all' );
+			}
+			wp_register_script( 'ucf-resource_search_js', UCF_RESOURCE_SEARCH__SCRIPT_URL . '/ucf-resource-search.min.js', null, $version, true );
+		}
+
 		public static function enqueue_styles() {
-			if ( get_option( 'ucf_resource_search_include_css' ) ) {
-				wp_enqueue_style( 'ucf_resource_search_css', plugins_url( 'static/css/ucf-resource-search.min.css', UCF_Resource_Search__PLUGIN_FILE ), false, false, 'all' );
+			if ( wp_style_is( 'ucf_resource_search_css', 'registered' ) ) {
+				wp_enqueue_style( 'ucf_resource_search_css' );
 			}
 		}
 
 		public static function enqueue_scripts() {
-			wp_enqueue_script( 'ucf-resource_search_js', plugins_url( 'static/js/ucf-resource-search.min.js', UCF_Resource_Search__PLUGIN_FILE ), null, null, true );
+			wp_enqueue_script( 'ucf-resource_search_js' );
 		}
 
 
@@ -28,6 +38,7 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 		 * @return string | The output of the resource search content.
 		 **/
 		public static function display_resource_search( $args ) {
+			self::enqueue_scripts();
 
 			$args['show_empty_sections'] = filter_var( $args['show_empty_sections'], FILTER_VALIDATE_BOOLEAN );
 			$args['column_count']        = is_numeric( $args['column_count'] ) ? (int)$args['column_count'] : $defaults['column_count'];
@@ -89,8 +100,8 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 
 	}
 
-	add_action( 'wp_enqueue_scripts', array( 'UCF_Resource_Search_Common', 'enqueue_styles' ) );
-	add_action( 'wp_enqueue_scripts', array( 'UCF_Resource_Search_Common', 'enqueue_scripts' ) );
+	add_action( 'wp_enqueue_scripts', array( 'UCF_Resource_Search_Common', 'register_assets' ), 10, 0 );
+	add_action( 'wp_enqueue_scripts', array( 'UCF_Resource_Search_Common', 'enqueue_styles' ), 11, 0 );
 }
 
 ?>

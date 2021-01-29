@@ -17,7 +17,7 @@ if ( ! function_exists( 'ucf_resource_link_display_classic_before' ) ) {
 	function ucf_resource_link_display_classic_before( $content, $args ) {
 		ob_start();
 	?>
-		<article>
+		<div class="resource-search-wrap">
 	<?php
 		return ob_get_clean();
 	}
@@ -292,7 +292,7 @@ if ( ! function_exists( 'ucf_resource_link_display_classic_after' ) ) {
 	function ucf_resource_link_display_classic_after( $content, $args ) {
 		ob_start();
 	?>
-		</article>
+		</div>
 	<?php
 		return ob_get_clean();
 	}
