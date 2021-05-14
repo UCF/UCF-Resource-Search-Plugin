@@ -13,7 +13,7 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 			if ( filter_var( get_option( 'ucf_resource_search_include_css' ), FILTER_VALIDATE_BOOLEAN ) ) {
 				wp_register_style( 'ucf_resource_search_css', UCF_RESOURCE_SEARCH__STYLES_URL . '/ucf-resource-search.min.css', null, $version, 'all' );
 			}
-			wp_register_script( 'ucf-resource_search_js', UCF_RESOURCE_SEARCH__SCRIPT_URL . '/ucf-resource-search.min.js', null, $version, true );
+			wp_register_script( 'ucf-resource_search_js', UCF_RESOURCE_SEARCH__SCRIPT_URL . '/ucf-resource-search.min.js', array( 'jquery' ), $version, true );
 		}
 
 		public static function enqueue_styles() {
@@ -22,8 +22,34 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 			}
 		}
 
-		public static function enqueue_scripts() {
+		public static function enqueue_scripts( $args=null ) {
 			wp_enqueue_script( 'ucf-resource_search_js' );
+
+			if ( $args ) {
+				// Register the search data with the JS PostTypeSearchDataManager.
+				// Format is array(post->ID=>terms) where terms include the post title
+				// as well as all associated tag names
+				$items = array();
+				foreach ( get_posts( array( 'numberposts' => -1, 'post_type' => $args['post_type_name'] ) ) as $post ) {
+					$items[$post->ID] = array( $post->post_title );
+					foreach ( wp_get_object_terms( $post->ID, 'post_tag' ) as $term ) {
+						$items[$post->ID][] = $term->name;
+					}
+				}
+
+				ob_start();
+			?>
+				(function($) {
+					PostTypeSearchDataManager.register(new PostTypeSearchData(
+						<?php echo json_encode( $args['column_count'] ); ?>,
+						<?php echo json_encode( $args['column_width'] ); ?>,
+						<?php echo json_encode( $items ); ?>
+					));
+				})(jQuery);
+			<?php
+				$inline_script = trim( ob_get_clean() );
+				wp_add_inline_script( 'ucf-resource_search_js', $inline_script );
+			}
 		}
 
 
@@ -38,14 +64,14 @@ if ( ! class_exists( 'UCF_Resource_Search_Common' ) ) {
 		 * @return string | The output of the resource search content.
 		 **/
 		public static function display_resource_search( $args ) {
-			self::enqueue_scripts();
+			self::enqueue_scripts( $args );
 
 			$args['show_empty_sections'] = filter_var( $args['show_empty_sections'], FILTER_VALIDATE_BOOLEAN );
-			$args['column_count']        = is_numeric( $args['column_count'] ) ? (int)$args['column_count'] : $defaults['column_count'];
+			$args['column_count']        = is_numeric( $args['column_count'] ) ? (int)$args['column_count'] : 3;
 			$args['show_sorting']        = filter_var( $args['show_sorting'], FILTER_VALIDATE_BOOLEAN );
 
 			if ( !in_array( $args['default_sorting'], array( 'term', 'alpha' ) ) ) {
-				$args['default_sorting'] = $default['default_sorting'];
+				$args['default_sorting'] = 'term';
 			}
 
 			if ( has_filter( 'ucf_resource_link_display_' . $args['layout'] . '_before' ) ) {
