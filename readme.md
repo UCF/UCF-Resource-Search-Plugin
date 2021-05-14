@@ -48,10 +48,15 @@ Card Layout
 
 ## Dependencies ##
 
-* Athena-Framework or Bootstrap 4 (if using the card layout)
+* Athena-Framework or Bootstrap 4
 * FontAwesome (if using the card layout)
 
 ## Changelog ##
+
+### 1.0.7 ###
+* Moved resource search initialization JS to the document footer
+* Fixed enqueuing of `ucf-resource_search_js` to declare jQuery as a dependency
+* Fixed some missing variables and CSS class names and values
 
 ### 1.0.6 ###
 * Added late JS enqueuing
