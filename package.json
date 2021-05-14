@@ -19,13 +19,13 @@
     "src"
   ],
   "devDependencies": {
-    "@babel/cli": "^7.12.10",
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.2",
+    "@babel/preset-env": "^7.14.2",
     "babel-eslint": "^10.1.0",
-    "babel-plugin-transform-es2015-modules-strip": "^0.1.1",
+    "babel-plugin-transform-es2015-modules-strip": "^0.1.2",
     "browser-sync": "^2.26.14",
-    "eslint": "^7.18.0",
+    "eslint": "^7.26.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-babel": "^8.0.0",
