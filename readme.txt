@@ -55,7 +55,7 @@ Card Layout
 
 == Dependencies ==
 
-* Athena-Framework or Bootstrap 4 (if using the card layout)
+* Athena-Framework or Bootstrap 4
 * FontAwesome (if using the card layout)
 
 == Changelog ==

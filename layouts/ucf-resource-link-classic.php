@@ -52,35 +52,6 @@ if ( ! function_exists( 'ucf_resource_link_display_classic' ) ) {
 			$args['default_search_label'] = 'Find a ' . $labels['singular'];
 		}
 
-		// Register the search data with the JS PostTypeSearchDataManager.
-		// Format is array(post->ID=>terms) where terms include the post title
-		// as well as all associated tag names
-		$items = array();
-		foreach ( get_posts( array( 'numberposts' => -1, 'post_type' => $args['post_type_name'] ) ) as $post ) {
-			$items[$post->ID] = array( $post->post_title );
-			foreach ( wp_get_object_terms( $post->ID, 'post_tag' ) as $term ) {
-				$items[$post->ID][] = $term->name;
-			}
-		}
-
-		ob_start();
-		?>
-		<script type="text/javascript">
-			if (typeof jQuery !== 'undefined') {
-				jQuery(document).ready(function ($) {
-					PostTypeSearchDataManager.register(new PostTypeSearchData(
-						<?php echo json_encode( $args['column_count'] ); ?>,
-						<?php echo json_encode( $args['column_width'] ); ?>,
-						<?php echo json_encode( $items ); ?>
-					));
-				});
-			} else {
-				console.log('jQuery dependency failed to load');
-			}
-		</script>
-		<?php
-		$script = ob_get_clean();
-
 		// Set up a post query
 		$query_args = array(
 			'numberposts' => -1,
@@ -158,7 +129,7 @@ if ( ! function_exists( 'ucf_resource_link_display_classic' ) ) {
 							<?php echo $args['default_search_label']; ?>
 						</h2>
 					</label>
-					<input type="text" id="resource-search-input" name="resource-search-input" class="resource-search-input" placeholder="<?php echo $args['default_search_text']; ?>">
+					<input type="text" id="resource-search-input" name="resource-search-input" class="form-control resource-search-input" placeholder="<?php echo $args['default_search_text']; ?>">
 				</form>
 			</div>
 			<div class="resource-search-results"></div>
@@ -270,7 +241,7 @@ if ( ! function_exists( 'ucf_resource_link_display_classic' ) ) {
 
 		</div><!-- .resource-search -->
 	<?php
-		return $script . ob_get_clean();
+		return ob_get_clean();
 	}
 }
 add_filter( 'ucf_resource_link_display_classic', 'ucf_resource_link_display_classic', 10, 2 );
