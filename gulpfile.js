@@ -1,44 +1,47 @@
-const autoprefixer = require('gulp-autoprefixer');
-const babel        = require('gulp-babel');
-const browserSync  = require('browser-sync').create();
-const cleanCSS     = require('gulp-clean-css');
-const eslint       = require('gulp-eslint');
 const fs           = require('fs');
+const browserSync  = require('browser-sync').create();
 const gulp         = require('gulp');
+const autoprefixer = require('gulp-autoprefixer');
+const cleanCSS     = require('gulp-clean-css');
+const include      = require('gulp-include');
+const eslint       = require('gulp-eslint');
 const isFixed      = require('gulp-eslint-if-fixed');
-const merge        = require('merge');
-const readme       = require('gulp-readme-to-markdown');
+const babel        = require('gulp-babel');
 const rename       = require('gulp-rename');
 const sass         = require('gulp-sass');
 const sassLint     = require('gulp-sass-lint');
 const uglify       = require('gulp-uglify');
+const readme       = require('gulp-readme-to-markdown');
+const merge        = require('merge');
+
 
 let config = {
   src: {
     scssPath: './src/scss',
-    jsPath: './src/js',
-    fontPath: './src/fonts'
+    jsPath: './src/js'
   },
-  static: {
+  dist: {
     cssPath: './static/css',
     jsPath: './static/js'
   },
+  packagesPath: './node_modules',
   sync: false,
-  syncOptions: {},
+  syncTarget: 'http://localhost/wordpress/'
 };
 
+/* eslint-disable no-sync */
 if (fs.existsSync('./gulp-config.json')) {
   const overrides = JSON.parse(fs.readFileSync('./gulp-config.json'));
   config = merge(config, overrides);
 }
+/* eslint-enable no-sync */
 
 
 //
-// CSS
+// Helper functions
 //
 
-// Base scss linting function
-// NOTE: see global linter rules and excluded files in .sass-lint.yml
+// Base SCSS linting function
 function lintSCSS(src) {
   return gulp.src(src)
     .pipe(sassLint())
@@ -46,44 +49,27 @@ function lintSCSS(src) {
     .pipe(sassLint.failOnError());
 }
 
-// Compile scss files
-function buildCSS(src, filename, dest) {
-  dest = dest || config.static.cssPath;
+// Base SCSS compile function
+function buildCSS(src, dest) {
+  dest = dest || config.dist.cssPath;
 
   return gulp.src(src)
     .pipe(sass({
-      includePaths: [config.src.scssPath]
+      includePaths: [config.src.scssPath, config.packagesPath]
     })
-    .on('error', sass.logError))
+      .on('error', sass.logError))
     .pipe(cleanCSS())
     .pipe(autoprefixer({
       // Supported browsers added in package.json ("browserslist")
       cascade: false
     }))
-    .pipe(rename(filename))
+    .pipe(rename({
+      extname: '.min.css'
+    }))
     .pipe(gulp.dest(dest));
 }
 
-// Lint scss files. Do not perform linting on vendor scss files.
-gulp.task('scss-lint', () => {
-  return lintSCSS(`${config.src.scssPath}/**/*.scss`);
-});
-
-// Compile framework scss files
-gulp.task('scss-build', () => {
-  return buildCSS(config.src.scssPath + '/ucf-resource-search.scss', 'ucf-resource-search.min.css', config.static.cssPath);
-});
-
-// All css-related tasks
-gulp.task('css', gulp.series('scss-lint', 'scss-build'));
-
-//
-// JavaScript
-//
-
 // Base JS linting function (with eslint). Fixes problems in-place.
-// NOTE: see global linter rules in .eslintrc.json and excluded files
-// in .eslintignore
 function lintJS(src, dest) {
   dest = dest || config.src.jsPath;
 
@@ -95,38 +81,22 @@ function lintJS(src, dest) {
     .pipe(isFixed(dest));
 }
 
-// Concat and uglify js files through babel
-function buildJS(src, filename, dest) {
+// Base JS compile function
+function buildJS(src, dest) {
   dest = dest || config.dist.jsPath;
 
   return gulp.src(src)
+    .pipe(include({
+      includePaths: [config.packagesPath, config.src.jsPath]
+    }))
     .on('error', console.log) // eslint-disable-line no-console
     .pipe(babel())
-    .pipe(uglify({
-      output: {
-        // try to preserve non-standard headers (e.g. from objectFitPolyfill)
-        comments: /^(!|---)/
-      }
+    .pipe(uglify())
+    .pipe(rename({
+      extname: '.min.js'
     }))
-    .pipe(rename(filename))
     .pipe(gulp.dest(dest));
 }
-
-
-// Run eslint on js files in src.jsPath. Do not perform linting
-// on vendor js files. See .eslintignore for globally ignored files.
-gulp.task('es-lint', () => {
-  return lintJS(`${config.src.jsPath}/*.js`, config.src.jsPath);
-});
-
-// Concat and uglify framework js files through babel
-gulp.task('js-build', () => {
-  return buildJS(`${config.src.jsPath}/ucf-resource-search.js`, 'ucf-resource-search.min.js', config.static.jsPath);
-});
-
-// All js-related tasks
-gulp.task('js', gulp.series('es-lint', 'js-build'));
-
 
 // BrowserSync reload function
 function serverReload(done) {
@@ -139,41 +109,80 @@ function serverReload(done) {
 // BrowserSync serve function
 function serverServe(done) {
   if (config.sync) {
-    browserSync.init(config.syncOptions);
+    browserSync.init({
+      proxy: {
+        target: config.syncTarget
+      }
+    });
   }
   done();
 }
 
+
 //
-// Readme
+// CSS
 //
 
-// Create a Github-flavored markdown file from the plugin readme.txt
-gulp.task('readme', function() {
-  return gulp.src(['readme.txt'])
+// Lint all plugin scss files
+gulp.task('scss-lint-plugin', () => {
+  return lintSCSS(`${config.src.scssPath}/*.scss`);
+});
+
+// Compile plugin stylesheet
+gulp.task('scss-build-plugin', () => {
+  return buildCSS(`${config.src.scssPath}/ucf-resource-search.scss`);
+});
+
+// All plugin css-related tasks
+gulp.task('css', gulp.series('scss-lint-plugin', 'scss-build-plugin'));
+
+
+//
+// JavaScript
+//
+
+// Run eslint on js files in src.jsPath
+gulp.task('es-lint-plugin', () => {
+  return lintJS([`${config.src.jsPath}/*.js`], config.src.jsPath);
+});
+
+// Concat and uglify js files through babel
+gulp.task('js-build-plugin', () => {
+  return buildJS(`${config.src.jsPath}/ucf-resource-search.js`, config.dist.jsPath);
+});
+
+// All js-related tasks
+gulp.task('js', gulp.series('es-lint-plugin', 'js-build-plugin'));
+
+
+//
+// Documentation
+//
+
+// Generates a README.md from README.txt
+gulp.task('readme', () => {
+  return gulp.src('readme.txt')
     .pipe(readme({
       details: false,
-      screenshot_ext: [],
+      screenshot_ext: [] // eslint-disable-line camelcase
     }))
     .pipe(gulp.dest('.'));
 });
 
 
 //
-// Rerun tasks when files change.
+// Rerun tasks when files change
 //
-
 gulp.task('watch', (done) => {
   serverServe(done);
 
   gulp.watch(`${config.src.scssPath}/**/*.scss`, gulp.series('css', serverReload));
   gulp.watch(`${config.src.jsPath}/**/*.js`, gulp.series('js', serverReload));
-  gulp.watch(`./readme.txt`, gulp.series('readme'));
-  gulp.watch(`./**/*.php`, serverReload);
+  gulp.watch('./**/*.php', gulp.series(serverReload));
 });
+
 
 //
 // Default task
 //
-
 gulp.task('default', gulp.series('css', 'js', 'readme'));
