@@ -91,11 +91,20 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 					<div class="ucf-resource-directory-items row">
 	<?php
 				foreach ( $posts as $key => $post ) :
-					$facebook_url = get_post_meta( $post->ID, 'ucf_resource_facebook_url', TRUE );
-					$twitter_url = get_post_meta( $post->ID, 'ucf_resource_twitter_url', TRUE );
-					$instagram_url = get_post_meta( $post->ID, 'ucf_resource_instagram_url', TRUE );
-					$linkedin_url = get_post_meta( $post->ID, 'ucf_resource_linkedin_url', TRUE );
-					$youtube_url = get_post_meta( $post->ID, 'ucf_resource_youtube_url', TRUE );
+					$resource_title = $post->post_title;
+
+					// Re-organizes $resource_title by taking what's after the comma
+					// (commonly something like, ", College of" or ",School of") and
+					// moving it to the front of the string. This is used in order to
+					// accurately display the resource's title for the social links.
+					$resource_title_array  = array_reverse( explode( ", ", $resource_title ) );
+					$social_resource_title = implode( ' ', $resource_title_array );
+
+					$facebook_url   = get_post_meta( $post->ID, 'ucf_resource_facebook_url', TRUE );
+					$twitter_url    = get_post_meta( $post->ID, 'ucf_resource_twitter_url', TRUE );
+					$instagram_url  = get_post_meta( $post->ID, 'ucf_resource_instagram_url', TRUE );
+					$linkedin_url   = get_post_meta( $post->ID, 'ucf_resource_linkedin_url', TRUE );
+					$youtube_url    = get_post_meta( $post->ID, 'ucf_resource_youtube_url', TRUE );
 
 					$terms = get_the_terms( $post, 'resource_link_category' );
 					if( !empty( $terms ) ) {
@@ -107,39 +116,39 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 					<div class="card-wrapper <?php echo $column_class; ?> mb-4 <?php echo $terms; ?>">
 						<div class="card h-100 card-outline-primary">
 							<div class="card-block pb-0">
-								<a href="<?php echo get_post_meta( $post->ID, 'ucf_resource_link_url', TRUE ); ?>" class="text-secondary">
-									<h4 class="ucf-resource-link-title card-title text-center h6"><?php echo $post->post_title; ?></h4>
+								<a href="<?php echo get_post_meta( $post->ID, 'ucf_resource_link_url', TRUE ); ?>" class="resource-link text-secondary">
+									<<?php echo $args['card_layout_title_element']; ?> class="ucf-resource-link-title card-title text-center h6"><?php echo $resource_title; ?></<?php echo $args['card_layout_title_element']; ?>>
 								</a>
 							</div>
 							<div class="card-block ucf-resource-social-icons text-center pt-0">
 								<?php if( $facebook_url ) : ?>
 									<a class="ucf-resource-social-link bg-default bg-default-link ucf-resource-social-facebook" target="_blank" href="<?php echo $facebook_url ?>">
 										<span class="fa fa-facebook" aria-hidden="true"></span>
-										<p class="sr-only">Like us on Facebook</p>
+										<p class="sr-only">Like <?php echo $social_resource_title; ?> on Facebook</p>
 									</a>
 								<?php endif; ?>
 								<?php if( $twitter_url ) : ?>
 									<a class="ucf-resource-social-link bg-default bg-default-link ucf-resource-social-twitter" target="_blank" href="<?php echo $twitter_url ?>">
 										<span class="fa fa-twitter" aria-hidden="true"></span>
-										<p class="sr-only">Follow us on Twitter</p>
+										<p class="sr-only">Follow <?php echo $social_resource_title; ?> on Twitter</p>
 									</a>
 								<?php endif; ?>
 								<?php if( $instagram_url ) : ?>
 									<a class="ucf-resource-social-link bg-default bg-default-link ucf-resource-social-instagram" target="_blank" href="<?php echo $instagram_url ?>">
 										<span class="fa fa-instagram" aria-hidden="true"></span>
-										<p class="sr-only">Find us on Instagram</p>
+										<p class="sr-only">Find <?php echo $social_resource_title; ?> on Instagram</p>
 									</a>
 								<?php endif; ?>
 								<?php if( $linkedin_url ) : ?>
 									<a class="ucf-resource-social-link bg-default bg-default-link ucf-resource-social-linkedin" target="_blank" href="<?php echo $linkedin_url ?>">
 										<span class="fa fa-linkedin" aria-hidden="true"></span>
-										<p class="sr-only">View our LinkedIn page</p>
+										<p class="sr-only">View <?php echo $social_resource_title; ?>'s LinkedIn page</p>
 									</a>
 								<?php endif; ?>
 								<?php if( $youtube_url ) : ?>
 									<a class="ucf-resource-social-link bg-default bg-default-link ucf-resource-social-youtube" target="_blank" href="<?php echo $youtube_url ?>">
 										<span class="fa fa-youtube" aria-hidden="true"></span>
-										<p class="sr-only">Follow us on YouTube</p>
+										<p class="sr-only">Follow <?php echo $social_resource_title; ?> on YouTube</p>
 									</a>
 								<?php endif; ?>
 							</div>
