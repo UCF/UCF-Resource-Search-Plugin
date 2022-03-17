@@ -117,7 +117,7 @@ if ( ! function_exists( 'ucf_resource_link_display_card' ) ) {
 						<div class="card h-100 card-outline-primary">
 							<div class="card-block pb-0">
 								<a href="<?php echo get_post_meta( $post->ID, 'ucf_resource_link_url', TRUE ); ?>" class="resource-link text-secondary">
-									<h4 class="ucf-resource-link-title card-title text-center h6"><?php echo $resource_title; ?></h4>
+									<<?php echo $args['card_layout_title_element']; ?> class="ucf-resource-link-title card-title text-center h6"><?php echo $resource_title; ?></<?php echo $args['card_layout_title_element']; ?>>
 								</a>
 							</div>
 							<div class="card-block ucf-resource-social-icons text-center pt-0">
