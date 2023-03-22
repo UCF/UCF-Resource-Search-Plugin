@@ -1,0 +1,8 @@
+{
+    "name": "ucf/ucf-resource-search-plugin",
+    "description": "Provides a custom post type, shortcode, functions, and default styles for displaying a resource search input and list of resources.",
+    "type": "wordpress-plugin",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}

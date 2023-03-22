@@ -53,6 +53,17 @@ Card Layout
 
 ## Changelog ##
 
+### 1.0.9 ###
+Enhancements:
+* Added composer file.
+
+### 1.0.8 ###
+Enhancements:
+* Update packages and gulpfile in https://github.com/UCF/UCF-Resource-Search-Plugin/pull/35
+* Updated social links in the card layout to use differentiating sr-only text in https://github.com/UCF/UCF-Resource-Search-Plugin/pull/36
+* Added a `card_layout_title_element` shortcode attribute in https://github.com/UCF/UCF-Resource-Search-Plugin/pull/36
+* Adjusted default underline styles for the resource-links in https://github.com/UCF/UCF-Resource-Search-Plugin/pull/36
+
 ### 1.0.7 ###
 * Moved resource search initialization JS to the document footer
 * Fixed enqueuing of `ucf-resource_search_js` to declare jQuery as a dependency
